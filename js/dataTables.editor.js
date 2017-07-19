@@ -46,8 +46,8 @@ var Editor = function ( opts )
 	console.info('To install the files, please download Editor from');
 	console.info('https://editor.datatables.net and replace the Javascript and');
 	console.info('CSS files in `node_modules/datatables.net-editor` with those');
-	console.info('from the downloaded package. `install.sh` can be used to');
-	console.info('install the files from the downloaded zip.');
+	console.info('from the downloaded package. An install shell script is');
+	console.info('available in the package. Please see the Readme file for details.');
 };
 
 

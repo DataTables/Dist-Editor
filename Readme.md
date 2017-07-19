@@ -16,11 +16,11 @@ Although the Editor Javascript library is not available in this package, it prov
 
 This distribution method does mean that each time you `npm install` to install the required packages for your application you will need to copy the licensed Editor files into your `npm_modules`. To help assist with that this package provides a shell script which will copy the files from the Editor zip to your node modules. Usage:
 
-    ./node_modules/datatables.net-editor/install.sh pathToEditorZip
+    sh node_modules/datatables.net-editor/install.sh pathToEditorZip
 
 For example:
 
-    ./node_modules/datatables.net-editor/install.sh ~/Downloads/Editor-1.6.3.zip
+    sh node_modules/datatables.net-editor/install.sh ~/Downloads/Editor-1.6.3.zip
 
 
 
