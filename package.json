@@ -1,6 +1,6 @@
 {
   "name": "datatables.net-editor",
-  "version": "1.6.3",
+  "version": "1.6.4",
   "description": "DataTables Editor",
   "main": "js/dataTables.editor.js",
   "scripts": {
