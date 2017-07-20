@@ -1,10 +1,11 @@
 {
   "name": "datatables.net-editor",
-  "version": "1.6.4",
+  "version": "1.6.5",
   "description": "DataTables Editor",
   "main": "js/dataTables.editor.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "node postinstall.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,8 @@
     "Editor"
   ],
   "author": "SpryMedia Ltd",
-  "license": "SEE LICENSE IN License.md"
+  "license": "SEE LICENSE IN License.md",
+  "dependencies": {
+    "adm-zip": "^0.4.7"
+  }
 }
