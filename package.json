@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "github.com:DataTables/editor-npm.git"
+    "url": "github.com:DataTables/Dist-Editor.git"
   },
   "keywords": [
     "DataTables",
