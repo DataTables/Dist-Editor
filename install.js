@@ -47,6 +47,9 @@ zipEntries.forEach(function(zipEntry) {
 	checkWrite(zipEntry, 'dataTables.editor.js', 'js', 'node_modules/datatables.net-editor');
 	checkWrite(zipEntry, 'dataTables.editor.min.js', 'js', 'node_modules/datatables.net-editor');
 
+	// Typescript types
+	checkWrite(zipEntry, 'types.d.ts', 'js', 'node_modules/datatables.net-editor');
+
 	// DT styling
 	checkWrite(zipEntry, 'editor.dataTables.css', 'css', 'node_modules/datatables.net-editor-dt');
 	checkWrite(zipEntry, 'editor.dataTables.min.css', 'css', 'node_modules/datatables.net-editor-dt');
@@ -62,6 +65,18 @@ zipEntries.forEach(function(zipEntry) {
 	checkWrite(zipEntry, 'editor.bootstrap4.min.js', 'js', 'node_modules/datatables.net-editor-bs4');
 	checkWrite(zipEntry, 'editor.bootstrap4.css', 'css', 'node_modules/datatables.net-editor-bs4');
 	checkWrite(zipEntry, 'editor.bootstrap4.min.css', 'css', 'node_modules/datatables.net-editor-bs4');
+
+	// Bootstrap 5 styling
+	checkWrite(zipEntry, 'editor.bootstrap5.js', 'js', 'node_modules/datatables.net-editor-bs5');
+	checkWrite(zipEntry, 'editor.bootstrap5.min.js', 'js', 'node_modules/datatables.net-editor-bs5');
+	checkWrite(zipEntry, 'editor.bootstrap5.css', 'css', 'node_modules/datatables.net-editor-bs5');
+	checkWrite(zipEntry, 'editor.bootstrap5.min.css', 'css', 'node_modules/datatables.net-editor-bs5');
+
+	// Bulma styling
+	checkWrite(zipEntry, 'editor.bulma.js', 'js', 'node_modules/datatables.net-editor-bm');
+	checkWrite(zipEntry, 'editor.bulma.min.js', 'js', 'node_modules/datatables.net-editor-bm');
+	checkWrite(zipEntry, 'editor.bulma.css', 'css', 'node_modules/datatables.net-editor-bm');
+	checkWrite(zipEntry, 'editor.bulma.min.css', 'css', 'node_modules/datatables.net-editor-bm');
 
 	// Foundation styling
 	checkWrite(zipEntry, 'editor.foundation.js', 'js', 'node_modules/datatables.net-editor-zf');
