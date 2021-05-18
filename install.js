@@ -47,9 +47,6 @@ zipEntries.forEach(function(zipEntry) {
 	checkWrite(zipEntry, 'dataTables.editor.js', 'js', 'node_modules/datatables.net-editor');
 	checkWrite(zipEntry, 'dataTables.editor.min.js', 'js', 'node_modules/datatables.net-editor');
 
-	// Typescript types
-	checkWrite(zipEntry, 'types.d.ts', 'js', 'node_modules/datatables.net-editor');
-
 	// DT styling
 	checkWrite(zipEntry, 'editor.dataTables.css', 'css', 'node_modules/datatables.net-editor-dt');
 	checkWrite(zipEntry, 'editor.dataTables.min.css', 'css', 'node_modules/datatables.net-editor-dt');
