@@ -1,9 +1,9 @@
 {
   "name": "datatables.net-editor",
-  "version": "2.0.0",
+  "version": "2.0.2",
   "description": "DataTables Editor",
   "main": "js/dataTables.editor.js",
-  "types": "js/types.d.ts",
+  "types": "types/Editor.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "postinstall": "node postinstall.js"
