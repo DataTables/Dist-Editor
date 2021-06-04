@@ -1,7 +1,7 @@
 import modelSettings from './model/settings';
 import classNames from './ext/classes';
 import * as publicApi from './core/api';
-import { error, pairs, upload } from './core/api-static';
+import * as staticApi from './core/api-static';
 import * as privateApi from './core/private';
 import Field from './field/Field';
 import { IFieldType } from './model/fieldType';
@@ -81,10 +81,10 @@ export default class Editor {
     };
     static Field: typeof Field;
     static DateTime: any;
-    static error: typeof error;
-    static pairs: typeof pairs;
+    static error: typeof staticApi.error;
+    static pairs: typeof staticApi.pairs;
     static safeId: (id: string) => string;
-    static upload: typeof upload;
+    static upload: typeof staticApi.upload;
     static defaults: {
         table: any;
         fields: any[];
