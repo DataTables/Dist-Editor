@@ -50,6 +50,8 @@ zipEntries.forEach(function(zipEntry) {
 	// DT styling
 	checkWrite(zipEntry, 'editor.dataTables.css', 'css', 'node_modules/datatables.net-editor-dt');
 	checkWrite(zipEntry, 'editor.dataTables.min.css', 'css', 'node_modules/datatables.net-editor-dt');
+	checkWrite(zipEntry, 'editor.dataTables.js', 'js', 'node_modules/datatables.net-editor-dt');
+	checkWrite(zipEntry, 'editor.dataTables.min.js', 'js', 'node_modules/datatables.net-editor-dt');
 
 	// Bootstrap styling
 	checkWrite(zipEntry, 'editor.bootstrap.js', 'js', 'node_modules/datatables.net-editor-bs');
