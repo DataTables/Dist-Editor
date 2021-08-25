@@ -90,6 +90,7 @@ export default class Editor {
         fields: any[];
         display: string;
         ajax: any;
+        /** @internal */
         idSrc: string;
         events: {};
         i18n: {
@@ -162,6 +163,7 @@ export default class Editor {
             };
             fakeRowEnd: () => void;
             individual: (identifier: any, fieldNames: any) => {};
+            /** @internal */
             fields: (identifier: any) => {};
             create: (fields: any, data: any) => void;
             edit: (identifier: any, fields: any, data: any, store: any) => void;

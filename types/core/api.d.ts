@@ -70,7 +70,7 @@ export declare function bubblePosition(this: Editor): Editor;
  *    the function is executed in the scope of the Editor instance, so you can call
  *    the Editor's API methods using the `this` keyword.
  *  @param {string} [buttons.className] The CSS class(es) to apply to the button
- *    which can be useful for styling buttons which preform different functions
+ *    which can be useful for styling buttons which perform different functions
  *    each with a distinctive visual appearance.
  *  @return {Editor} Editor instance, for chaining
  */
@@ -133,7 +133,7 @@ export declare function close(this: Editor): Editor;
  *      .create();
  *
  *  @example
- *    // Don't show the form and automatically submit it after programatically
+ *    // Don't show the form and automatically submit it after programmatically
  *    // setting the values of fields (and using the field defaults)
  *    editor
  *      create()
