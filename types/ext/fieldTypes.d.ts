@@ -143,6 +143,8 @@ export declare const datatable: import("../model/fieldType").IFieldType & {
         input: JQuery<HTMLElement>;
         side: JQuery<HTMLElement>;
     };
+    disable: (conf: any) => void;
+    enable: (conf: any) => void;
     get(conf: any): any;
     set(conf: any, val: any, localUpdate: any): void;
     update: (conf: any, options: any, append: any) => void;
