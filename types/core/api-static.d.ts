@@ -16,13 +16,13 @@ export declare function error(msg: string, tn: number, thro?: boolean): void;
  *
  * @static
  * @param {object|array} An object or array of data to iterate over getting the
- *     label / value pairs.
+ * label / value pairs.
  * @param {object} props When an array of objects is passed in as the data
- *     source by default the label will be read from the `label` property and
- *     the value from the `value` property of the object. This option can alter
- *     that behaviour.
+ * source by default the label will be read from the `label` property and
+ * the value from the `value` property of the object. This option can alter
+ * that behaviour.
  * @param {function} fn Callback function. Takes three parameters: the label,
- *      the value and the iterator index.
+ * the value and the iterator index.
  */
 export declare function pairs(data: any, props: any, fn: any): void;
 /**
@@ -36,6 +36,6 @@ export declare function pairs(data: any, props: any, fn: any): void;
  * @param {Files} files The file(s) to upload
  * @param {function} progressCallback Upload progress callback
  * @param {function} completeCallback Callback function for once the file has
- *     been uploaded
+ * been uploaded
  */
 export declare function upload(editor: any, conf: any, files: any, progressCallback: any, completeCallback: any): void;

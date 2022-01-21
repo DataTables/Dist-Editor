@@ -3,7 +3,7 @@ export interface IButton {
     action: () => {};
     /** Class names to give the button */
     className: string;
-    /**Set the tab index attribute for the button */
+    /** Set the tab index attribute for the button */
     tabIndex: number;
     /** Text to show in the button */
     text: string;

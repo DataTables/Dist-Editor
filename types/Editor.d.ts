@@ -14,133 +14,132 @@ export default class Editor {
     static files: {};
     static version: string;
     static classes: {
-        wrapper: string;
-        processing: {
-            indicator: string;
-            active: string;
-        };
-        header: {
-            wrapper: string;
-            content: string;
-        };
-        body: {
-            wrapper: string;
-            content: string;
-        };
-        footer: {
-            wrapper: string;
-            content: string;
-        };
-        form: {
-            wrapper: string;
-            content: string;
-            tag: string;
-            info: string;
-            error: string;
-            buttons: string;
-            button: string;
-            buttonInternal: string;
-        };
-        field: {
-            wrapper: string;
-            typePrefix: string;
-            namePrefix: string;
-            label: string;
-            input: string;
-            inputControl: string;
-            error: string;
-            "msg-label": string;
-            "msg-error": string;
-            "msg-message": string;
-            "msg-info": string;
-            multiValue: string;
-            multiInfo: string;
-            multiRestore: string;
-            multiNoEdit: string;
-            disabled: string;
-            processing: string;
-        };
         actions: {
             create: string;
             edit: string;
             remove: string;
         };
-        inline: {
+        body: {
+            content: string;
             wrapper: string;
-            liner: string;
-            buttons: string;
         };
         bubble: {
-            wrapper: string;
-            liner: string;
-            table: string;
-            close: string;
-            pointer: string;
             bg: string;
+            close: string;
+            liner: string;
+            pointer: string;
+            table: string;
+            wrapper: string;
         };
+        field: {
+            disabled: string;
+            error: string;
+            input: string;
+            inputControl: string;
+            label: string;
+            'msg-error': string;
+            'msg-info': string;
+            'msg-label': string;
+            'msg-message': string;
+            multiInfo: string;
+            multiNoEdit: string;
+            multiRestore: string;
+            multiValue: string;
+            namePrefix: string;
+            processing: string;
+            typePrefix: string;
+            wrapper: string;
+        };
+        footer: {
+            content: string;
+            wrapper: string;
+        };
+        form: {
+            button: string;
+            buttonInternal: string;
+            buttons: string;
+            content: string;
+            error: string;
+            info: string;
+            tag: string;
+            wrapper: string;
+        };
+        header: {
+            content: string;
+            wrapper: string;
+        };
+        inline: {
+            buttons: string;
+            liner: string;
+            wrapper: string;
+        };
+        processing: {
+            active: string;
+            indicator: string;
+        };
+        wrapper: string;
     };
     static Field: typeof Field;
     static DateTime: any;
     static error: typeof staticApi.error;
     static pairs: typeof staticApi.pairs;
-    static safeId: (id: string) => string;
     static upload: typeof staticApi.upload;
     static defaults: {
-        table: any;
-        fields: any[];
-        display: string;
+        actionName: string;
         ajax: any;
-        /** @internal */
-        idSrc: string;
+        display: string;
         events: {};
-        i18n: {
-            close: string;
-            create: {
-                button: string;
-                title: string;
-                submit: string;
-            };
-            edit: {
-                button: string;
-                title: string;
-                submit: string;
-            };
-            remove: {
-                button: string;
-                title: string;
-                submit: string;
-                confirm: {
-                    _: string;
-                    "1": string;
-                };
-            };
-            error: {
-                system: string;
-            };
-            multi: {
-                title: string;
-                info: string;
-                restore: string;
-                noMulti: string;
-            };
-            datetime: {
-                previous: string;
-                next: string;
-                months: string[];
-                weekdays: string[];
-                amPm: string[];
-                hours: string;
-                minutes: string;
-                seconds: string;
-                unknown: string;
-            };
-        };
+        fields: any[];
         formOptions: {
             bubble: import("./model/formOptions").IFormOptions;
             inline: import("./model/formOptions").IFormOptions;
             main: import("./model/formOptions").IFormOptions;
         };
-        actionName: string;
+        i18n: {
+            close: string;
+            create: {
+                button: string;
+                submit: string;
+                title: string;
+            };
+            datetime: {
+                amPm: string[];
+                hours: string;
+                minutes: string;
+                months: string[];
+                next: string;
+                previous: string;
+                seconds: string;
+                unknown: string;
+                weekdays: string[];
+            };
+            edit: {
+                button: string;
+                submit: string;
+                title: string;
+            };
+            error: {
+                system: string;
+            };
+            multi: {
+                info: string;
+                /** @internal */
+                noMulti: string;
+                restore: string;
+                title: string;
+            };
+            remove: {
+                button: string;
+                confirm: {
+                    1: string;
+                    _: string;
+                };
+                submit: string;
+                title: string;
+            };
+        };
+        idSrc: string;
+        table: any;
     };
     static models: {
         button: import("./model/button").IButton;
@@ -151,57 +150,40 @@ export default class Editor {
     };
     static dataSources: {
         dataTable: {
-            id: (data: any) => any;
-            fakeRow: (insertPoint: "end" | "start") => {
+            commit(action: any, identifier: any, data: any, store: any): void;
+            create(fields: any, data: any): void;
+            edit(identifier: any, fields: any, data: any, store: any): void;
+            fakeRow(insertPoint: "end" | "start"): {
                 0: {
-                    attachFields: any[];
                     attach: any[];
+                    attachFields: any[];
                     displayFields: {};
                     fields: any;
                     type: string;
                 };
             };
-            fakeRowEnd: () => void;
-            individual: (identifier: any, fieldNames: any) => {};
-            /** @internal */
-            fields: (identifier: any) => {};
-            create: (fields: any, data: any) => void;
-            edit: (identifier: any, fields: any, data: any, store: any) => void;
-            refresh: () => void;
-            remove: (identifier: any, fields: any, store: any) => void;
-            prep: (action: any, identifier: any, submit: any, json: any, store: any) => void;
-            commit: (action: any, identifier: any, data: any, store: any) => void;
+            fakeRowEnd(): void;
+            fields(identifier: any): {};
+            id(data: any): any;
+            individual(identifier: any, fieldNames: any): {};
+            prep(action: any, identifier: any, submit: any, json: any, store: any): void;
+            refresh(): void;
+            remove(identifier: any, fields: any, store: any): void;
         };
         html: {
-            id: (data: any) => any;
-            initField: (cfg: any) => void;
-            individual: (identifier: any, fieldNames: any) => any;
-            fields: (identifier: any) => {};
-            create: (fields: any, data: any) => void;
-            edit: (identifier: any, fields: any, data: any) => void;
-            remove: (identifier: any, fields: any) => void;
+            create(fields: any, data: any): void;
+            edit(identifier: any, fields: any, data: any): void;
+            fields(identifier: any): {};
+            id(data: any): any;
+            individual(identifier: any, fieldNames: any): any;
+            initField(cfg: any): void;
+            remove(identifier: any, fields: any): void;
         };
     };
     static display: {
         envelope: import("./model/displayController").IDisplayController;
         lightbox: import("./model/displayController").IDisplayController;
     };
-    protected classes: typeof classNames;
-    protected s: typeof modelSettings;
-    protected dom: {
-        body: HTMLElement;
-        bodyContent: HTMLElement;
-        buttons: HTMLElement;
-        footer: HTMLElement;
-        form: HTMLElement;
-        formContent: HTMLElement;
-        formError: HTMLElement;
-        formInfo: HTMLElement;
-        header: HTMLElement;
-        processing: HTMLElement;
-        wrapper: HTMLElement;
-    };
-    protected i18n: typeof Editor.defaults.i18n;
     add: typeof publicApi.add;
     ajax: typeof publicApi.ajax;
     background: typeof publicApi.background;
@@ -251,6 +233,22 @@ export default class Editor {
     template: typeof publicApi.template;
     title: typeof publicApi.title;
     val: typeof publicApi.val;
+    protected classes: typeof classNames;
+    protected s: typeof modelSettings;
+    protected dom: {
+        body: HTMLElement;
+        bodyContent: HTMLElement;
+        buttons: HTMLElement;
+        footer: HTMLElement;
+        form: HTMLElement;
+        formContent: HTMLElement;
+        formError: HTMLElement;
+        formInfo: HTMLElement;
+        header: HTMLElement;
+        processing: HTMLElement;
+        wrapper: HTMLElement;
+    };
+    protected i18n: typeof Editor.defaults.i18n;
     protected _actionClass: typeof privateApi._actionClass;
     protected _ajax: typeof privateApi._ajax;
     protected _animate: typeof privateApi._animate;
@@ -285,6 +283,8 @@ export default class Editor {
     protected _submitError: typeof privateApi._submitError;
     protected _tidy: typeof privateApi._tidy;
     protected _weakInArray: typeof privateApi._weakInArray;
+    constructor(init: any);
+    static safeId: (id: string) => string;
     /** @internal */
     internalEvent(name: any, args: any): void;
     /** @internal */
@@ -292,47 +292,47 @@ export default class Editor {
         close: string;
         create: {
             button: string;
-            title: string;
             submit: string;
+            title: string;
+        };
+        datetime: {
+            amPm: string[];
+            hours: string;
+            minutes: string;
+            months: string[];
+            next: string;
+            previous: string;
+            seconds: string;
+            unknown: string;
+            weekdays: string[];
         };
         edit: {
             button: string;
-            title: string;
             submit: string;
-        };
-        remove: {
-            button: string;
             title: string;
-            submit: string;
-            confirm: {
-                _: string;
-                "1": string;
-            };
         };
         error: {
             system: string;
         };
         multi: {
-            title: string;
             info: string;
-            restore: string;
+            /** @internal */
             noMulti: string;
+            restore: string;
+            title: string;
         };
-        datetime: {
-            previous: string;
-            next: string;
-            months: string[];
-            weekdays: string[];
-            amPm: string[];
-            hours: string;
-            minutes: string;
-            seconds: string;
-            unknown: string;
+        remove: {
+            button: string;
+            confirm: {
+                1: string;
+                _: string;
+            };
+            submit: string;
+            title: string;
         };
     };
     /** @internal */
     internalMultiInfo(): void;
     /** @internal */
     internalSettings(): import("./model/settings").ISettings;
-    constructor(init: any);
 }

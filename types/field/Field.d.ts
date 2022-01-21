@@ -5,6 +5,8 @@ export default class Field {
     static formatters: {
         [name: string]: IFormatter;
     };
+    valFromData: (a: any) => any;
+    valToData: (a: any) => any;
     private s;
     private dom;
     constructor(options: IOptions, classes: any, host: Editor);
@@ -26,7 +28,7 @@ export default class Field {
     message(msg: any, fn?: any): any;
     multiGet(id?: any): any;
     multiRestore(): void;
-    multiSet(id: any, val?: any): this;
+    multiSet(id: any, val?: any, recalc?: boolean): this;
     name(): string;
     node(): HTMLElement;
     nullDefault(): boolean;
@@ -44,11 +46,9 @@ export default class Field {
     multiInfoShown(show: any): void;
     multiReset(): void;
     submittable(): boolean;
-    valFromData: (a: any) => any;
-    valToData: (a: any) => any;
-    private _errorNode;
-    private _format;
     _msg(el: any, msg?: any, fn?: any): any;
     _multiValueCheck(): boolean;
     _typeFn(name: any, ...args: any[]): any;
+    private _errorNode;
+    private _format;
 }

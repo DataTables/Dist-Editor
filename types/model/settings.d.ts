@@ -5,8 +5,8 @@ import { IFormOptions } from './formOptions';
 export declare type IMode = null | 'bubble' | 'inline' | 'main';
 export declare type IDisplay = false | 'bubble' | 'inline' | 'main';
 export interface IAjaxOptions extends JQueryAjaxSettings {
-    deleteBody?: boolean;
     data: (d: object) => object | void;
+    deleteBody?: boolean;
 }
 /**
  * Settings object for Editor - this provides the state for each instance of
@@ -16,14 +16,46 @@ export interface IAjaxOptions extends JQueryAjaxSettings {
  * please keep this in mind when upgrading!
  */
 export interface ISettings {
+    /**
+     * The current form action - 'create', 'edit' or 'remove'. If no current action then
+     * it is set to null.
+     */
+    action: null | 'create' | 'edit' | 'remove';
+    /** Name of the parameter used to indicate what action Editor is performing */
+    actionName: string;
     ajax: string | IAjaxOptions | Function;
-    opts: any;
+    bubbleNodes: HTMLElement[];
+    closeCb: null | ((complete: Function, mode: IMode) => void);
+    closeIcb: null | (() => void);
+    dataSource: any;
     /**
      * The display controller object for the Form.
      * This is directly set by the initialisation parameter / default of the same name.
      */
     displayController: any;
-    dataSource: any;
+    /**
+     * Flag to indicate if the form is currently displayed or not and what type of display
+     */
+    displayed: IDisplay;
+    editCount: number;
+    editData: {
+        [field: string]: {
+            [id: string]: any;
+        };
+    };
+    editFields: {
+        [idSrc: string]: {
+            attach?: HTMLElement[];
+            data?: any;
+            fields: {
+                [name: string]: Field;
+            };
+            idSrc?: string;
+            node?: HTMLElement;
+            type?: 'row' | 'cell';
+        };
+    };
+    editOpts: any;
     /**
      * The form fields - see {@link Editor.models.field} for details of the
      * objects held in this array.
@@ -31,83 +63,51 @@ export interface ISettings {
     fields: {
         [k: string]: Field;
     };
+    formOptions: {
+        bubble: IFormOptions;
+        inline: IFormOptions;
+        main: IFormOptions;
+    };
     /** Global error message */
     globalError: string;
+    /**
+     * The ID of the row being edited (set to -1 on create and remove actions)
+     */
+    id: number;
+    /**
+     * JSON property from which to read / write the row's ID property.
+     */
+    idSrc: string | number;
+    includeFields: string[];
+    /**
+     * Form editing mode
+     */
+    mode: IMode;
+    /**
+     * Developer provided identifier for the elements to be edited (i.e. at
+     * `dt-type row-selector` to select rows to edit or delete.
+     */
+    modifier: any;
+    opts: any;
     /**
      * Field order - order that the fields will appear in on the form. Array of strings,
      * the names of the fields.
      */
     order: string[];
     /**
-     * The ID of the row being edited (set to -1 on create and remove actions)
-     */
-    id: number;
-    /**
-     * Flag to indicate if the form is currently displayed or not and what type of display
-     */
-    displayed: IDisplay;
-    /**
      * Flag to indicate if the form is current in a processing state (true) or not (false)
      */
     processing: boolean;
-    /**
-     * Developer provided identifier for the elements to be edited (i.e. at
-     * `dt-type row-selector` to select rows to edit or delete.
-     */
-    modifier: any;
-    /**
-     * The current form action - 'create', 'edit' or 'remove'. If no current action then
-     * it is set to null.
-     */
-    action: null | 'create' | 'edit' | 'remove';
-    /**
-     * JSON property from which to read / write the row's ID property.
-     */
-    idSrc: string | number;
-    /**
-     * Unique instance counter to be able to remove events
-     */
-    unique: number;
+    setFocus: Field | JQuery;
     /**
      * Selector for the DataTable
      */
     table: string | HTMLElement | JQuery;
-    /**
-     * Form editing mode
-     */
-    mode: IMode;
-    editFields: {
-        [idSrc: string]: {
-            idSrc?: string;
-            data?: any;
-            node?: HTMLElement;
-            fields: {
-                [name: string]: Field;
-            };
-            type?: 'row' | 'cell';
-            attach?: HTMLElement[];
-        };
-    };
-    editOpts: any;
-    closeCb: null | ((complete: Function, mode: IMode) => void);
-    closeIcb: null | (() => void);
-    formOptions: {
-        bubble: IFormOptions;
-        inline: IFormOptions;
-        main: IFormOptions;
-    };
     template: JQuery;
-    includeFields: string[];
-    editData: {
-        [field: string]: {
-            [id: string]: any;
-        };
-    };
-    setFocus: Field | JQuery;
-    editCount: number;
-    /** Name of the parameter used to indicate what action Editor is performing */
-    actionName: string;
-    bubbleNodes: HTMLElement[];
+    /**
+     * Unique instance counter to be able to remove events
+     */
+    unique: number;
 }
 declare const settings: ISettings;
 export default settings;

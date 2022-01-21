@@ -1,9 +1,9 @@
 import Editor from '../Editor';
 import { IFormOptions } from '../model/formOptions';
 import { IAjaxOptions } from '../model/settings';
-export declare type IReplacements = {
+export interface IReplacements {
     [name: string]: (this: Editor, name: string, id: string, action: string, data: any) => string;
-};
+}
 export interface IEditorAjax extends IAjaxOptions {
     deleteBody?: boolean;
     replacements?: IReplacements;
@@ -88,8 +88,8 @@ export declare function _closeReg(this: Editor, fn: any): void;
  * @private
  */
 export declare function _crudArgs(this: Editor, arg1: any, arg2: any, arg3: any, arg4: any): {
+    maybeOpen(): void;
     opts: any;
-    maybeOpen: () => void;
 };
 /**
  * Execute the data source abstraction layer functions. This is simply a case
@@ -157,7 +157,7 @@ export declare function _fieldNames(this: Editor, fieldNames: any): any[];
  * Focus on a field. Providing the logic to allow complex focus expressions
  *
  * @param {array} fields Array of Field instances or field names for the fields
- *     that are shown
+ * that are shown
  * @param {null|string|integer} focus Field identifier to focus on
  * @private
  */
@@ -203,11 +203,11 @@ export declare function _multiInfo(this: Editor): void;
  * Close the current form, which can result in the display controller
  * hiding its display, or showing a form from a level up if nesting
  */
-export declare function _nestedClose(this: Editor, cb: Function): void;
+export declare function _nestedClose(this: Editor, cb: () => void): void;
 /**
  * Display a form, adding it to the display stack for nesting
  */
-export declare function _nestedOpen(this: Editor, cb: Function, nest: boolean): void;
+export declare function _nestedOpen(this: Editor, cb: () => void, nest: boolean): void;
 /**
  * Common display editing form method called by all editing methods after the
  * form has been configured and displayed. This is to ensure all fire the same
@@ -215,7 +215,7 @@ export declare function _nestedOpen(this: Editor, cb: Function, nest: boolean): 
  *
  * @param  {string} type Editing type
  * @param  {boolean} immediate indicate if the open is immediate (in which case
- *   `opened` is also triggered).
+ * `opened` is also triggered).
  * @return {boolean} `true`
  * @private
  */
@@ -227,7 +227,7 @@ export declare function _postopen(this: Editor, type: any, immediate: any): bool
  *
  * @param  {string} Editing type
  * @return {boolean} `false` if the open is cancelled by the preOpen event,
- *   otherwise `true`
+ * otherwise `true`
  * @private
  */
 export declare function _preopen(this: Editor, type: any): boolean;
@@ -237,7 +237,7 @@ export declare function _preopen(this: Editor, type: any): boolean;
  * form buttons is blocked
  *
  * @param {boolean} processing true if to go into processing mode and false if
- *   to come out of processing mode
+ * to come out of processing mode
  * @private
  */
 export declare function _processing(this: Editor, processing: any): void;
@@ -254,15 +254,15 @@ export declare function _noProcessing(this: Editor, args: any): boolean;
  * this method directly.
  *
  * @param {function} [successCallback] Callback function that is executed once the
- *   form has been successfully submitted to the server and no errors occurred.
+ * form has been successfully submitted to the server and no errors occurred.
  * @param {function} [errorCallback] Callback function that is executed if the
- *   server reports an error due to the submission (this includes a JSON formatting
- *   error should the error return invalid JSON).
+ * server reports an error due to the submission (this includes a JSON formatting
+ * error should the error return invalid JSON).
  * @param {function} [formatdata] Callback function that is passed in the data
- *   that will be submitted to the server, allowing pre-formatting of the data,
- *   removal of data or adding of extra fields.
+ * that will be submitted to the server, allowing pre-formatting of the data,
+ * removal of data or adding of extra fields.
  * @param {boolean} [hide=true] When the form is successfully submitted, by default
- *   the form display will be hidden - this option allows that to be overridden.
+ * the form display will be hidden - this option allows that to be overridden.
  * @private
  */
 export declare function _submit(this: Editor, successCallback: any, errorCallback: any, formatdata: any, hide: any): void;
@@ -280,15 +280,16 @@ export declare function _submit(this: Editor, successCallback: any, errorCallbac
 export declare function _submitTable(this: Editor, data: any, success: any, error: any, submitParams: any): void;
 /**
  * Submit success callback function
+ *
  * @param  {object} json                Payload
  * @param  {bool} notGood               True if the returned status code was
- *   >=400 (i.e. processing failed). This is called `notGood` rather than
- *   `success` since the request was successfully processed, just not written to
- *   the db. It is also inverted from "good" to make it optional when overriding
- *   the `ajax` function.
+ * >=400 (i.e. processing failed). This is called `notGood` rather than
+ * `success` since the request was successfully processed, just not written to
+ * the db. It is also inverted from "good" to make it optional when overriding
+ * the `ajax` function.
  * @param  {object} submitParams        Submitted data
  * @param  {object} submitParamsLocal   Unmodified copy of submitted data
- *   (before it could be modified by the user)
+ * (before it could be modified by the user)
  * @param  {string} action              CRUD action being taken
  * @param  {int} editCount              Protection against async errors
  * @param  {bool} hide                  Hide the form flag
@@ -299,6 +300,7 @@ export declare function _submitTable(this: Editor, data: any, success: any, erro
 export declare function _submitSuccess(this: Editor, json: any, notGood: any, submitParams: any, submitParamsLocal: any, action: any, editCount: any, hide: any, successCallback: any, errorCallback: any, xhr: any): void;
 /**
  * Submit error callback function
+ *
  * @private
  */
 export declare function _submitError(this: Editor, xhr: any, err: any, thrown: any, errorCallback: any, submitParams: any, action: any): void;
@@ -314,6 +316,7 @@ export declare function _submitError(this: Editor, xhr: any, err: any, thrown: a
 export declare function _tidy(this: Editor, fn: any): boolean;
 /**
  * Same as $.inArray but with weak type checking
+ *
  * @param {any} name Value to look for in the array
  * @param {array} arr Array to scan through
  * @returns {number} -1 if not found, index otherwise

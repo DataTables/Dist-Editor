@@ -68,6 +68,14 @@ export interface IDefaults {
      */
     labelInfo: string;
     /**
+     * Information message for the field - expected to be dynamic
+     */
+    message: string;
+    /**
+     * Allow a field to be editable when multiple rows are selected
+     */
+    multiEditable: boolean;
+    /**
      * The name for the field that is submitted to the server. This is the only
      * mandatory parameter in the field description object.
      */
@@ -77,20 +85,6 @@ export interface IDefaults {
      */
     nullDefault: boolean;
     /**
-     * The input control that is presented to the end user. The options available
-     * are defined by {@link Editor.fieldTypes} and any extensions made
-     * to that object.
-     */
-    type: string;
-    /**
-     * Information message for the field - expected to be dynamic
-     */
-    message: string;
-    /**
-     * Allow a field to be editable when multiple rows are selected
-     */
-    multiEditable: boolean;
-    /**
      * Apply a transform (format) to a value when it is set into the field
      */
     setFormatter: IFormatter;
@@ -98,6 +92,12 @@ export interface IDefaults {
      * Indicate if the field's value can be submitted
      */
     submit: boolean;
+    /**
+     * The input control that is presented to the end user. The options available
+     * are defined by {@link Editor.fieldTypes} and any extensions made
+     * to that object.
+     */
+    type: string;
 }
 export interface IOptions extends Partial<IDefaults> {
 }
