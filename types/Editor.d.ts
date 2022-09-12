@@ -1,3 +1,8 @@
+/*! DataTables Editor v2.0.9
+ *
+ * ©2012-2022 SpryMedia Ltd, all rights reserved.
+ * License: editor.datatables.net/license
+ */
 import modelSettings from './model/settings';
 import classNames from './ext/classes';
 import * as publicApi from './core/api';
@@ -123,7 +128,6 @@ export default class Editor {
             };
             multi: {
                 info: string;
-                /** @internal */
                 noMulti: string;
                 restore: string;
                 title: string;
@@ -316,7 +320,6 @@ export default class Editor {
         };
         multi: {
             info: string;
-            /** @internal */
             noMulti: string;
             restore: string;
             title: string;
