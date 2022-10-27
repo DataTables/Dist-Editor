@@ -168,7 +168,7 @@ export declare function undependent(this: Editor, parent: any): Editor;
  * * A function, which is used as a callback, allowing non-ajax updates.
  * @return {Editor} Editor instance, for chaining
  */
-export declare function dependent(this: Editor, parent: any, url: any, opts: any): Editor;
+export declare function dependent(this: Editor, parent: any, url: any, optsIn: any): Editor;
 /**
  * Destroy the Editor instance, cleaning up fields, display and event handlers
  */
