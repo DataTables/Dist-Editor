@@ -1,6 +1,6 @@
-/*! DataTables Editor v2.0.10
+/*! DataTables Editor v2.1.0
  *
- * ©2012-2022 SpryMedia Ltd, all rights reserved.
+ * ©2012-2023 SpryMedia Ltd, all rights reserved.
  * License: editor.datatables.net/license
  */
 import modelSettings from './model/settings';
@@ -71,6 +71,10 @@ export default class Editor {
         };
         header: {
             content: string;
+            title: {
+                tag: any;
+                class: string;
+            };
             wrapper: string;
         };
         inline: {
@@ -171,6 +175,7 @@ export default class Editor {
             id(data: any): any;
             individual(identifier: any, fieldNames: any): {};
             prep(action: any, identifier: any, submit: any, json: any, store: any): void;
+            /** @internal */
             refresh(): void;
             remove(identifier: any, fields: any, store: any): void;
         };
@@ -238,6 +243,7 @@ export default class Editor {
     title: typeof publicApi.title;
     val: typeof publicApi.val;
     protected classes: typeof classNames;
+    protected c: typeof Editor.defaults;
     protected s: typeof modelSettings;
     protected dom: {
         body: HTMLElement;
@@ -272,6 +278,7 @@ export default class Editor {
     protected _focus: typeof privateApi._focus;
     protected _formOptions: typeof privateApi._formOptions;
     protected _inline: typeof privateApi._inline;
+    protected _inputTrigger: typeof privateApi._inputTrigger;
     protected _optionsUpdate: typeof privateApi._optionsUpdate;
     protected _message: typeof privateApi._message;
     protected _multiInfo: typeof privateApi._multiInfo;

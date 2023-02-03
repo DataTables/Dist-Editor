@@ -208,6 +208,13 @@ declare const _default: {
          */
         content: string;
         /**
+         * Title tag
+         */
+        title: {
+            tag: any;
+            class: string;
+        };
+        /**
          * Container for the header elements
          */
         wrapper: string;

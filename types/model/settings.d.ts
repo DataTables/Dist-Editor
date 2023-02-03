@@ -25,6 +25,7 @@ export interface ISettings {
     actionName: string;
     ajax: string | IAjaxOptions | Function;
     bubbleNodes: HTMLElement[];
+    bubbleBottom: boolean;
     closeCb: null | ((complete: Function, mode: IMode) => void);
     closeIcb: null | (() => void);
     dataSource: any;

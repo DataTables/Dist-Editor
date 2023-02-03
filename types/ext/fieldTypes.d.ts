@@ -139,7 +139,7 @@ export declare const datatable: import("../model/fieldType").IFieldType & {
     set(conf: any, val: any): void;
 } & {
     _addOptions(conf: any, options: any, append?: boolean): void;
-    _jumpToFirst(conf: any): void;
+    _jumpToFirst(conf: any, editor: any): void;
     create(conf: any): {
         input: JQuery<HTMLElement>;
         side: JQuery<HTMLElement>;

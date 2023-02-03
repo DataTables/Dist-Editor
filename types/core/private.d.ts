@@ -175,6 +175,16 @@ export declare function _formOptions(this: Editor, opts: IFormOptions): string;
  */
 export declare function _inline(this: Editor, editFields: any, opts: any, closeCb?: any): Editor;
 /**
+ * Add a triggering action for inline editing, with a return function that
+ * will tidy up the events.
+ *
+ * @param  type Action
+ * @param  opts Form options object
+ * @param  insertPoint Insert point in the DOM
+ * @private
+ */
+export declare function _inputTrigger(this: Editor, type: 'submit' | 'cancel', opts: any, insertPoint: any): () => void;
+/**
  * Update the field options from a JSON data source
  *
  * @param  {object} json JSON object from the server
