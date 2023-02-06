@@ -3,6 +3,7 @@
   "version": "2.1.0",
   "description": "DataTables Editor",
   "main": "js/dataTables.editor.js",
+  "module": "js/dataTables.editor.mjs",
   "types": "types/types.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

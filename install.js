@@ -44,56 +44,39 @@ try {
 
 zipEntries.forEach(function(zipEntry) {
 	// Editor core
-	checkWrite(zipEntry, 'dataTables.editor.js', 'js', 'node_modules/datatables.net-editor');
-	checkWrite(zipEntry, 'dataTables.editor.min.js', 'js', 'node_modules/datatables.net-editor');
+	copyJs(zipEntry, 'dataTables.editor', '');
 
 	// DT styling
-	checkWrite(zipEntry, 'editor.dataTables.css', 'css', 'node_modules/datatables.net-editor-dt');
-	checkWrite(zipEntry, 'editor.dataTables.min.css', 'css', 'node_modules/datatables.net-editor-dt');
-	checkWrite(zipEntry, 'editor.dataTables.js', 'js', 'node_modules/datatables.net-editor-dt');
-	checkWrite(zipEntry, 'editor.dataTables.min.js', 'js', 'node_modules/datatables.net-editor-dt');
+	copyCss(zipEntry, 'editor.dataTables', 'dt');
+	copyJs(zipEntry, 'editor.dataTables', 'dt');
 
 	// Bootstrap styling
-	checkWrite(zipEntry, 'editor.bootstrap.js', 'js', 'node_modules/datatables.net-editor-bs');
-	checkWrite(zipEntry, 'editor.bootstrap.min.js', 'js', 'node_modules/datatables.net-editor-bs');
-	checkWrite(zipEntry, 'editor.bootstrap.css', 'css', 'node_modules/datatables.net-editor-bs');
-	checkWrite(zipEntry, 'editor.bootstrap.min.css', 'css', 'node_modules/datatables.net-editor-bs');
+	copyCss(zipEntry, 'editor.bootstrap', 'bs');
+	copyJs(zipEntry, 'editor.bootstrap', 'bs');
 
 	// Bootstrap 4 styling
-	checkWrite(zipEntry, 'editor.bootstrap4.js', 'js', 'node_modules/datatables.net-editor-bs4');
-	checkWrite(zipEntry, 'editor.bootstrap4.min.js', 'js', 'node_modules/datatables.net-editor-bs4');
-	checkWrite(zipEntry, 'editor.bootstrap4.css', 'css', 'node_modules/datatables.net-editor-bs4');
-	checkWrite(zipEntry, 'editor.bootstrap4.min.css', 'css', 'node_modules/datatables.net-editor-bs4');
+	copyCss(zipEntry, 'editor.bootstrap4', 'bs4');
+	copyJs(zipEntry, 'editor.bootstrap4', 'bs4');
 
 	// Bootstrap 5 styling
-	checkWrite(zipEntry, 'editor.bootstrap5.js', 'js', 'node_modules/datatables.net-editor-bs5');
-	checkWrite(zipEntry, 'editor.bootstrap5.min.js', 'js', 'node_modules/datatables.net-editor-bs5');
-	checkWrite(zipEntry, 'editor.bootstrap5.css', 'css', 'node_modules/datatables.net-editor-bs5');
-	checkWrite(zipEntry, 'editor.bootstrap5.min.css', 'css', 'node_modules/datatables.net-editor-bs5');
+	copyCss(zipEntry, 'editor.bootstrap5', 'bs5');
+	copyJs(zipEntry, 'editor.bootstrap5', 'bs5');
 
 	// Bulma styling
-	checkWrite(zipEntry, 'editor.bulma.js', 'js', 'node_modules/datatables.net-editor-bm');
-	checkWrite(zipEntry, 'editor.bulma.min.js', 'js', 'node_modules/datatables.net-editor-bm');
-	checkWrite(zipEntry, 'editor.bulma.css', 'css', 'node_modules/datatables.net-editor-bm');
-	checkWrite(zipEntry, 'editor.bulma.min.css', 'css', 'node_modules/datatables.net-editor-bm');
+	copyCss(zipEntry, 'editor.bulma', 'bm');
+	copyJs(zipEntry, 'editor.bulma', 'bm');
 
 	// Foundation styling
-	checkWrite(zipEntry, 'editor.foundation.js', 'js', 'node_modules/datatables.net-editor-zf');
-	checkWrite(zipEntry, 'editor.foundation.min.js', 'js', 'node_modules/datatables.net-editor-zf');
-	checkWrite(zipEntry, 'editor.foundation.css', 'css', 'node_modules/datatables.net-editor-zf');
-	checkWrite(zipEntry, 'editor.foundation.min.css', 'css', 'node_modules/datatables.net-editor-zf');
+	copyCss(zipEntry, 'editor.foundation', 'zf');
+	copyJs(zipEntry, 'editor.foundation', 'zf');
 
 	// jQuery UI styling
-	checkWrite(zipEntry, 'editor.jqueryui.js', 'js', 'node_modules/datatables.net-editor-jqui');
-	checkWrite(zipEntry, 'editor.jqueryui.min.js', 'js', 'node_modules/datatables.net-editor-jqui');
-	checkWrite(zipEntry, 'editor.jqueryui.css', 'css', 'node_modules/datatables.net-editor-jqui');
-	checkWrite(zipEntry, 'editor.jqueryui.min.css', 'css', 'node_modules/datatables.net-editor-jqui');
+	copyCss(zipEntry, 'editor.jqueryui', 'jqui');
+	copyJs(zipEntry, 'editor.jqueryui', 'jqui');
 
 	// Semantic UI styling
-	checkWrite(zipEntry, 'editor.semanticui.js', 'js', 'node_modules/datatables.net-editor-se');
-	checkWrite(zipEntry, 'editor.semanticui.min.js', 'js', 'node_modules/datatables.net-editor-se');
-	checkWrite(zipEntry, 'editor.semanticui.css', 'css', 'node_modules/datatables.net-editor-se');
-	checkWrite(zipEntry, 'editor.semanticui.min.css', 'css', 'node_modules/datatables.net-editor-se');
+	copyCss(zipEntry, 'editor.semanticui', 'se');
+	copyJs(zipEntry, 'editor.semanticui', 'se');
 });
 
 console.info('Done');
@@ -107,6 +90,24 @@ function checkWrite(zipEntry, file, type, packageName) {
 
 		fs.writeFileSync(path, zipEntry.getData().toString('utf8'));
 	}
+}
+
+// Copy min and non-min versions of a single CSS file
+function copyCss(zipEntry, file, style) {
+	checkWrite(zipEntry, file + '.css', 'css', 'node_modules/datatables.net-editor-' + style);
+	checkWrite(zipEntry, file + '.min.css', 'css', 'node_modules/datatables.net-editor-' + style);
+}
+
+// Copy min and UMD / ESM versions of a single file
+function copyJs(zipEntry, file, style) {
+	if (style) {
+		style = '-' + style;
+	}
+
+	checkWrite(zipEntry, file + '.js', 'js', 'node_modules/datatables.net-editor' + style);
+	checkWrite(zipEntry, file + '.min.js', 'js', 'node_modules/datatables.net-editor' + style);
+	checkWrite(zipEntry, file + '.mjs', 'js', 'node_modules/datatables.net-editor' + style);
+	checkWrite(zipEntry, file + '.min.mjs', 'js', 'node_modules/datatables.net-editor' + style);
 }
 
 // Check to see if a path is a directory
