@@ -6,13 +6,14 @@
 
 import DataTables, {Api} from 'datatables.net';
 import Editor from './Editor';
+import {IButton} from './model/button';
+import {IFormOptions} from './model/formOptions';
 
 export default Editor;
 
 type DeepPartial<T> = T extends object ? {
     [P in keyof T]?: DeepPartial<T[P]>;
 } : T;
-
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * DataTables' types integration
@@ -107,6 +108,23 @@ declare module 'datatables.net' {
 			 */
 			defaults: ConfigEditor;
 		}
+	}
+
+	interface ButtonConfig {
+		/** Editor instance to trigger button */
+		editor: Editor;
+
+		/** The form control buttons to show in the Editor form when activated */
+		formButtons?: IButton | IButton[] | string;
+
+		/** The message to show in the edit form */
+		formMessage?: string;
+
+		/** Form options to configure the behaviour of the form */
+		formOptions?: IFormOptions;
+
+		/** The title to give the edit form */
+		formTitle?: string;
 	}
 }
 
