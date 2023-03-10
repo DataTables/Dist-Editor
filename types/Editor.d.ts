@@ -92,6 +92,7 @@ export default class Editor {
     static DateTime: any;
     static error: typeof staticApi.error;
     static pairs: typeof staticApi.pairs;
+    static factory: typeof staticApi.factory;
     static upload: typeof staticApi.upload;
     static defaults: {
         actionName: string;
@@ -294,7 +295,7 @@ export default class Editor {
     protected _submitError: typeof privateApi._submitError;
     protected _tidy: typeof privateApi._tidy;
     protected _weakInArray: typeof privateApi._weakInArray;
-    constructor(init: any);
+    constructor(init: any, cjsJq?: any);
     static safeId: (id: string) => string;
     /** @internal */
     internalEvent(name: any, args: any): void;

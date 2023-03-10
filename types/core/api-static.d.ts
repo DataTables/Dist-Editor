@@ -39,3 +39,10 @@ export declare function pairs(data: any, props: any, fn: any): void;
  * been uploaded
  */
 export declare function upload(editor: any, conf: any, files: any, progressCallback: any, completeCallback: any): void;
+/**
+ * CommonJS factory function pass through. Matches DataTables.
+ * @param {*} root Window
+ * @param {*} jq jQUery
+ * @returns {boolean} Indicator
+ */
+export declare function factory(root: any, jq: any): boolean;
