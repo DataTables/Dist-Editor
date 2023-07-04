@@ -1,4 +1,4 @@
-/*! DataTables Editor v2.1.3
+/*! DataTables Editor v2.2.0
  *
  * ©2012-2023 SpryMedia Ltd, all rights reserved.
  * License: editor.datatables.net/license
@@ -176,7 +176,6 @@ export default class Editor {
             id(data: any): any;
             individual(identifier: any, fieldNames: any): {};
             prep(action: any, identifier: any, submit: any, json: any, store: any): void;
-            /** @internal */
             refresh(): void;
             remove(identifier: any, fields: any, store: any): void;
         };
