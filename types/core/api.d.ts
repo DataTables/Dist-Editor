@@ -1,16 +1,16 @@
 /// <reference types="jquery" />
-/// <reference types="datatables.net" />
 import Editor from '../Editor';
 import Field from '../field/Field';
-import { IDisplay, IMode, ISettings } from '../model/settings';
+import { IDisplay, IMode, ISettings, IBubbleLocation } from '../model/settings';
 import { IFormOptions } from '../model/formOptions';
+import type { Api } from 'datatables.net';
 export declare type RowIdx = number;
-export declare type RowSelector<T = any> = RowIdx | string | Node | JQuery | ((idx: RowIdx, data: T, node: Node | null) => boolean) | RowSelector<T>[];
+export declare type RowSelector<T = any> = RowIdx | string | Node | JQuery | ((idx: RowIdx, data: T, node: Node | HTMLElement | null) => boolean) | RowSelector<T>[];
 export declare type CellIdx = {
     row: number;
     column: number;
 };
-export declare type CellSelector = CellIdx | string | Node | JQuery | ((idx: CellIdx, data: any, node: Node | null) => boolean) | CellSelector[];
+export declare type CellSelector = CellIdx | string | Node | JQuery | ((idx: CellIdx, data: any, node: Node | HTMLElement | null) => boolean) | CellSelector[];
 export interface Button {
     /**
      * Callback function which the button is activated.
@@ -168,6 +168,11 @@ export declare function bubble(this: Editor, cells: RowSelector, showIn?: boolea
  */
 export declare function bubble(this: Editor, cells: RowSelector, fieldNames?: string | string[], showIn?: boolean, opts?: IFormOptions): Editor;
 /**
+ * Set where the bubble should appear in relation to the field
+ */
+export declare function bubbleLocation(this: Editor): IBubbleLocation;
+export declare function bubbleLocation(this: Editor, location: IBubbleLocation): Editor;
+/**
  * Reposition the editing bubble (`bubble()`) when it is visible. This can be
  * used to update the bubble position if other elements on the page change
  * position. Editor will automatically call this method on window resize.
@@ -312,7 +317,7 @@ export declare function displayNode(this: Editor): Node;
  * @param options Form options
  * @returns Editor instance
  */
-export declare function edit(this: Editor, items: RowSelector | CellSelector | Node | JQuery, options?: IFormOptions): Editor;
+export declare function edit(this: Editor, items: RowSelector | CellSelector | Node | HTMLElement | JQuery, options?: IFormOptions): Editor;
 /**
  * Edit an item using the main editing display
  *
@@ -322,7 +327,7 @@ export declare function edit(this: Editor, items: RowSelector | CellSelector | N
  * @param options Form options
  * @returns Editor instance
  */
-export declare function edit(this: Editor, items: RowSelector | CellSelector | Node | JQuery, show?: boolean, options?: IFormOptions): Editor;
+export declare function edit(this: Editor, items: RowSelector | CellSelector | Node | HTMLElement | JQuery, show?: boolean, options?: IFormOptions): Editor;
 /**
  *
  * @param this Editor instance
@@ -333,7 +338,7 @@ export declare function edit(this: Editor, items: RowSelector | CellSelector | N
  * @returns Editor instance
  * @deprecated Use edit() with form options instead
  */
-export declare function edit(this: Editor, items: RowSelector | CellSelector | Node | JQuery, title?: string, buttons?: string | Button | Button[], show?: boolean, formOptions?: IFormOptions): Editor;
+export declare function edit(this: Editor, items: RowSelector | CellSelector | Node | HTMLElement | HTMLElement | JQuery, title?: string, buttons?: string | Button | Button[], show?: boolean, formOptions?: IFormOptions): Editor;
 /**
  * Enable one or more field inputs, restoring user interaction with the fields.
  *
@@ -474,7 +479,7 @@ export declare function inError(this: Editor, inNames?: any): boolean;
  * @param opts Form options
  * @returns Editor instance
  */
-export declare function inline(this: Editor, cell: string | Node | RowSelector | CellSelector | DataTables.Api, opts?: IFormOptions): Editor;
+export declare function inline(this: Editor, cell: string | Node | HTMLElement | RowSelector | CellSelector | Api<any>, opts?: IFormOptions): Editor;
 /**
  * Activate inline editing.
  *
@@ -484,7 +489,7 @@ export declare function inline(this: Editor, cell: string | Node | RowSelector |
  * @param opts Form options
  * @returns Editor instance
  */
-export declare function inline(this: Editor, cell: string | Node | RowSelector | CellSelector | DataTables.Api, fieldName?: any, opts?: IFormOptions): Editor;
+export declare function inline(this: Editor, cell: string | Node | HTMLElement | RowSelector | CellSelector | Api<any>, fieldName?: any, opts?: IFormOptions): Editor;
 /**
  * Inline creation of data.
  *
@@ -645,7 +650,7 @@ export declare function order(this: Editor, ...setIn: string[]): Editor;
  * @param options Form options
  * @returns Editor instance
  */
-export declare function remove(this: Editor, items: RowSelector | Node | string | DataTables.Api, options?: IFormOptions): Editor;
+export declare function remove(this: Editor, items: RowSelector | Node | HTMLElement | string | Api<any>, options?: IFormOptions): Editor;
 /**
  * Delete rows from a table
  *
@@ -655,7 +660,7 @@ export declare function remove(this: Editor, items: RowSelector | Node | string 
  * @param options Form options
  * @returns Editor instance
  */
-export declare function remove(this: Editor, items: RowSelector | Node | string | DataTables.Api, show?: boolean, options?: IFormOptions): Editor;
+export declare function remove(this: Editor, items: RowSelector | Node | HTMLElement | string | Api<any>, show?: boolean, options?: IFormOptions): Editor;
 /**
  * Delete rows from a table
  *
@@ -668,7 +673,7 @@ export declare function remove(this: Editor, items: RowSelector | Node | string 
  * @returns Editor instance
  * @deprecated Use the form options overload
  */
-export declare function remove(this: Editor, items: RowSelector | Node | string | DataTables.Api, title?: string, buttons?: string | Button | Button[], show?: boolean, options?: IFormOptions): Editor;
+export declare function remove(this: Editor, items: RowSelector | Node | HTMLElement | string | Api<any>, title?: string, buttons?: string | Button | Button[], show?: boolean, options?: IFormOptions): Editor;
 /**
  * Set the value of a field
  *
@@ -752,7 +757,7 @@ export declare function title(this: Editor): string;
  * @param titleIn Title to set
  * @returns Editor instance
  */
-export declare function title(this: Editor, titleIn: string | ((e: Editor, dt: DataTables.Api) => string)): Editor;
+export declare function title(this: Editor, titleIn: string | ((e: Editor, dt: Api<any>) => string)): Editor;
 /**
  * Get or set the value of a specific field, or get the value of all fields in
  * the form.

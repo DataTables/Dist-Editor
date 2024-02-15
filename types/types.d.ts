@@ -88,7 +88,7 @@ declare module 'datatables.net' {
 		edit: (opts?: ApiOptions) => Editor;
 	}
 
-	interface ApiStatic {
+	interface DataTablesStatic {
 		/**
 		 * Editor class
 		 */
@@ -96,7 +96,7 @@ declare module 'datatables.net' {
 			/**
 			 * Create a new Editor instance for the target DataTable
 			 */
-			new (config: ConfigEditor);
+			new (config: ConfigEditor): Editor;
 
 			/**
 			 * Editor version

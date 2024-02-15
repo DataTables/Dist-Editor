@@ -4,6 +4,7 @@ import Field from '../field/Field';
 import { IFormOptions } from './formOptions';
 export declare type IMode = null | 'bubble' | 'inline' | 'main';
 export declare type IDisplay = false | 'bubble' | 'inline' | 'main';
+export declare type IBubbleLocation = 'auto' | 'top' | 'bottom';
 export interface IAjaxOptions extends JQueryAjaxSettings {
     data: (d: object) => object | void;
     deleteBody?: boolean;
@@ -26,6 +27,7 @@ export interface ISettings {
     ajax: string | IAjaxOptions | Function;
     bubbleNodes: HTMLElement[];
     bubbleBottom: boolean;
+    bubbleLocation: IBubbleLocation;
     closeCb: null | ((complete: Function, mode: IMode) => void);
     closeIcb: null | (() => void);
     dataSource: any;

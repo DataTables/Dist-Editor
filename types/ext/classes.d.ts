@@ -168,6 +168,7 @@ declare const _default: {
          * Button
          */
         button: string;
+        buttonSubmit: string;
         /**
          * Button inside the form
          */

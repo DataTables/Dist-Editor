@@ -61,6 +61,7 @@ export default class Editor {
         };
         form: {
             button: string;
+            buttonSubmit: string;
             buttonInternal: string;
             buttons: string;
             content: string;
@@ -198,6 +199,7 @@ export default class Editor {
     background: typeof publicApi.background;
     blur: typeof publicApi.blur;
     bubble: typeof publicApi.bubble;
+    bubbleLocation: typeof publicApi.bubbleLocation;
     bubblePosition: typeof publicApi.bubblePosition;
     buttons: typeof publicApi.buttons;
     clear: typeof publicApi.clear;

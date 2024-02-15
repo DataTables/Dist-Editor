@@ -6,7 +6,7 @@ export default class Field {
         [name: string]: IFormatter;
     };
     valFromData: (a: any) => any;
-    valToData: (a: any) => any;
+    valToData: any;
     private s;
     private dom;
     constructor(options: IOptions, classes: any, host: Editor);

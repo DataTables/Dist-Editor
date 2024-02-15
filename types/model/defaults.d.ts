@@ -30,83 +30,6 @@ declare const _default: {
      * used to update the server (if indeed a server is being used!). For
      * example, you could use a different data store such as localStorage,
      * Firebase or route the data through a web-socket.
-     *
-     * @example
-     *    // As a string - all actions are submitted to this URI as POST requests
-     *    $(document).ready(function() {
-     *      var editor = new $.fn.Editor( {
-     *        "ajax": 'php/index.php',
-     *        "table": "#example"
-     *      } );
-     *    } );
-     *
-     * @example
-     *    // As an object - using GET rather than POST
-     *    $(document).ready(function() {
-     *      var editor = new $.fn.Editor( {
-     *        "ajax": {
-     *          "type": 'GET',
-     *          "url": 'php/index.php
-     *        },
-     *        "table": "#example"
-     *      } );
-     *    } );
-     *
-     * @example
-     *    // As an object - each action is submitted to a different URI as POST requests
-     *    $(document).ready(function() {
-     *      var editor = new $.fn.Editor( {
-     *        "ajax": {
-     *          "create": "/rest/user/create",
-     *          "edit":   "/rest/user/_id_/edit",
-     *          "remove": "/rest/user/_id_/delete"
-     *        },
-     *        "table": "#example"
-     *      } );
-     *    } );
-     *
-     * @example
-     *    // As an object - with different HTTP methods for each action
-     *    $(document).ready(function() {
-     *      var editor = new $.fn.Editor( {
-     *        "ajax": {
-     *          "create": {
-     *          	type: 'POST',
-     *          	url:  '/rest/user/create'
-     *          },
-     *          "edit": {
-     *          	type: 'PUT',
-     *          	url:  '/rest/user/edit/_id_'
-     *          },
-     *          "remove": {
-     *          	type: 'DELETE',
-     *          	url:  '/rest/user/delete'
-     *          }
-     *        },
-     *        "table": "#example"
-     *      } );
-     *    } );
-     *
-     *    // As a function - Making a custom `$.ajax` call
-     *    $(document).ready(function() {
-     *      var editor = new $.fn.Editor( {
-     *        "table": "#example",
-     *        "ajax": function ( method, url, data, successCallback, errorCallback ) {
-     *          $.ajax( {
-     *            "type": method,
-     *            "url":  url,
-     *            "data": data,
-     *            "dataType": "json",
-     *            "success": function (json) {
-     *              successCallback( json );
-     *            },
-     *            "error": function (xhr, error, thrown) {
-     *              errorCallback( xhr, error, thrown );
-     *            }
-     *          } );
-     *        }
-     *      } );
-     *    } );
      */
     ajax: any;
     /**
@@ -122,15 +45,6 @@ declare const _default: {
      *
      * @type string
      * @default lightbox
-     *
-     * @example
-     *    $(document).ready(function() {
-     *      var editor = new $.fn.Editor( {
-     *        "ajax": "php/index.php",
-     *        "table": "#example",
-     *        "display": 'envelope'
-     *      } );
-     *    } );
      */
     display: string;
     /**
@@ -153,20 +67,6 @@ declare const _default: {
      *
      * @type array
      * @default []
-     *
-     * @example
-     *    $(document).ready(function() {
-     *      var editor = new $.fn.Editor( {
-     *        "ajax": "php/index.php",
-     *        "table": "#example",
-     *        "fields": [ {
-     *            "label": "User name:",
-     *            "name": "username"
-     *          }
-     *          // More fields would typically be added here!
-     *        } ]
-     *      } );
-     *    } );
      */
     fields: any[];
     formOptions: {
@@ -183,37 +83,6 @@ declare const _default: {
      * customised table interface.
      *
      * @namespace
-     *
-     * @example
-     *    // Set the 'create' button text. All other strings used are the
-     *    // default values.
-     *    var editor = new $.fn.Editor( {
-     *      "ajax": "data/source",
-     *      "table": "#example",
-     *      "i18n": {
-     *        "create": {
-     *          "button": "New user"
-     *        }
-     *      }
-     *    } );
-     *
-     * @example
-     *    // Set the submit text for all three actions
-     *    var editor = new $.fn.Editor( {
-     *      "ajax": "data/source",
-     *      "table": "#example",
-     *      "i18n": {
-     *        "create": {
-     *          "submit": "Create new user"
-     *        },
-     *        "edit": {
-     *          "submit": "Update user"
-     *        },
-     *        "remove": {
-     *          "submit": "Remove user"
-     *        }
-     *      }
-     *    } );
      */
     i18n: {
         /**
@@ -361,47 +230,6 @@ declare const _default: {
              * @type object|string
              * @default Are you sure you wish to delete %d rows?
              *
-             * @example
-             *    // String - no plural consideration
-             *    var editor = new $.fn.Editor( {
-             *      "ajax": "data/source",
-             *      "table": "#example",
-             *      "i18n": {
-             *        "remove": {
-             *          "confirm": "Are you sure you wish to delete %d record(s)?"
-             *        }
-             *      }
-             *    } );
-             *
-             * @example
-             *    // Basic 1 (singular) or _ (plural)
-             *    var editor = new $.fn.Editor( {
-             *      "ajax": "data/source",
-             *      "table": "#example",
-             *      "i18n": {
-             *        "remove": {
-             *          "confirm": {
-             *            "_": "Confirm deletion of %d records.",
-             *            "1": "Confirm deletion of record."
-             *        }
-             *      }
-             *    } );
-             *
-             * @example
-             *    // Singular, dual and plural
-             *    var editor = new $.fn.Editor( {
-             *      "ajax": "data/source",
-             *      "table": "#example",
-             *      "i18n": {
-             *        "remove": {
-             *          "confirm": {
-             *            "_": "Confirm deletion of %d records.",
-             *            "1": "Confirm deletion of record.",
-             *            "2": "Confirm deletion of both record."
-             *        }
-             *      }
-             *    } );
-             *
              */
             confirm: {
                 1: string;
@@ -437,17 +265,6 @@ declare const _default: {
      *
      * @type null|string
      * @default DT_RowId
-     *
-     * @example
-     *    // Using a data source such as:
-     *    // { "id":12, "browser":"Chrome", ... }
-     *    $(document).ready(function() {
-     *      var editor = new $.fn.Editor( {
-     *        "ajax": "php/index.php",
-     *        "table": "#example",
-     *        "idSrc": "id"
-     *      } );
-     *    } );
      */
     idSrc: string;
     /**
@@ -461,14 +278,6 @@ declare const _default: {
      *
      * @type string
      * @default <i>Empty string</i>
-     *
-     * @example
-     *    $(document).ready(function() {
-     *      var editor = new $.fn.Editor( {
-     *        "ajax": "php/index.php",
-     *        "table": "#example"
-     *      } );
-     *    } );
      */
     table: any;
 };
