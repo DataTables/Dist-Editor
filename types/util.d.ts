@@ -3,8 +3,8 @@
 export declare function el(tag: string, ctx: JQuery | Element | Document): JQuery<HTMLElement>;
 export declare function safeDomId(id: any, prefix?: string): string;
 export declare function safeQueryId(id: any, prefix?: string): string;
-export declare function dataGet(src: string | number): (data: any, type?: string, val?: any, meta?: import("datatables.net").CellMetaSettings) => any;
-export declare function dataSet(src: string | number): (data: any, val: any, meta?: import("datatables.net").CellMetaSettings) => void;
+export declare function dataGet(src: string | number): any;
+export declare function dataSet(src: string | number): any;
 export declare function pluck(a: any, prop: any): any[];
 /**
  * Compare parameters for difference - diving into arrays and objects if

@@ -268,7 +268,7 @@ export declare function undependent(this: Editor, parent: string | string[]): Ed
  * @param optsIn Configuration options
  * @returns Editor instance
  */
-export declare function dependent(this: Editor, parent: string | string[], url: string | DependentCallback | JQueryAjaxSettings, optsIn?: DependentOptions): Editor;
+export declare function dependent(this: Editor, parent: string | string[], url: string | DependentCallback | JQuery.AjaxSettings, optsIn?: DependentOptions): Editor;
 /**
  * Destroy the Editor instance, cleaning up fields, display and event handlers
  */
