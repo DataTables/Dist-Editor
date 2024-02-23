@@ -20,7 +20,9 @@
   "author": "SpryMedia Ltd",
   "license": "SEE LICENSE IN License.md",
   "dependencies": {
-    "adm-zip": "^0.5.0"
+    "adm-zip": "^0.5.0",
+    "jquery": "^1.8 || ^2 || ^3",
+    "datatables.net": "^1.13.0 || ^2"
   },
   "devDependencies": {
     "@types/jquery": "^3.5.29"
