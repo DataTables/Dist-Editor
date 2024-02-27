@@ -1,6 +1,6 @@
-/*! DataTables Editor v2.3.0
+/*! DataTables Editor v2.3.1
  *
- * ©2012-2023 SpryMedia Ltd, all rights reserved.
+ * © SpryMedia Ltd, all rights reserved.
  * License: editor.datatables.net/license
  */
 import modelSettings from './model/settings';
