@@ -176,6 +176,33 @@ declare const _default: {
              */
             system: string;
         };
+        field: {
+            autocomplete: {
+                noResults: string;
+                placeholder: string;
+            };
+            tags: {
+                addButton: string;
+                inputPlaceholder: string;
+                noResults: string;
+                placeholder: string;
+            };
+            upload: {
+                choose: string;
+                clear: string;
+                dragDrop: string;
+                noFile: string;
+                processing: string;
+                uploading: string;
+            };
+            uploadMany: {
+                choose: string;
+                dragDrop: string;
+                noFiles: string;
+                processing: string;
+                uploading: string;
+            };
+        };
         /**
          * Strings used for multi-value editing
          *

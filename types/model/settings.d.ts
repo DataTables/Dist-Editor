@@ -2,6 +2,7 @@
 /// <reference types="datatables.net" />
 import Field from '../field/Field';
 import { IFormOptions } from './formOptions';
+import type IDefaults from './defaults';
 export declare type IMode = null | 'bubble' | 'inline' | 'main';
 export declare type IDisplay = false | 'bubble' | 'inline' | 'main';
 export declare type IBubbleLocation = 'auto' | 'top' | 'bottom';
@@ -73,6 +74,8 @@ export interface ISettings {
     };
     /** Global error message */
     globalError: string;
+    /** I18n strings */
+    i18n: typeof IDefaults['i18n'];
     /**
      * The ID of the row being edited (set to -1 on create and remove actions)
      */
@@ -107,6 +110,8 @@ export interface ISettings {
      */
     table: string | HTMLElement | JQuery;
     template: JQuery;
+    /** Instance's current form title */
+    title: string | null;
     /**
      * Unique instance counter to be able to remove events
      */

@@ -107,6 +107,10 @@ export declare function _dataSource(this: Editor, name: any, ...args: any[]): an
  */
 export declare function _displayReorder(this: Editor, includeFields?: any): void;
 /**
+ * Display the title in the form header, taking into account nested editing
+ */
+export declare function _drawTitle(): void;
+/**
  * Generic editing handler. This can be called by the three editing modes (main,
  * bubble and inline) to configure Editor for a row edit, and fire the required
  * events to ensure that the editing interfaces all provide a common API.

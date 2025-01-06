@@ -1,3 +1,4 @@
+import { IUploadConf } from '../ext/fieldTypes/shared';
 /**
  * Common error message emitter. This method is not (yet) publicly documented on
  * the Editor site. It might be in future.
@@ -38,7 +39,7 @@ export declare function pairs(data: any, props: any, fn: any): void;
  * @param {function} completeCallback Callback function for once the file has
  * been uploaded
  */
-export declare function upload(editor: any, conf: any, files: any, progressCallback: any, completeCallback: any): void;
+export declare function upload(editor: any, conf: IUploadConf, files: any, progressCallback: any, completeCallback: any): void;
 /**
  * CommonJS factory function pass through. Matches DataTables.
  * @param {*} root Window

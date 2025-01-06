@@ -132,6 +132,33 @@ export default class Editor {
             error: {
                 system: string;
             };
+            field: {
+                autocomplete: {
+                    noResults: string;
+                    placeholder: string;
+                };
+                tags: {
+                    addButton: string;
+                    inputPlaceholder: string;
+                    noResults: string;
+                    placeholder: string;
+                };
+                upload: {
+                    choose: string;
+                    clear: string;
+                    dragDrop: string;
+                    noFile: string;
+                    processing: string;
+                    uploading: string;
+                };
+                uploadMany: {
+                    choose: string;
+                    dragDrop: string;
+                    noFiles: string;
+                    processing: string;
+                    uploading: string;
+                };
+            };
             multi: {
                 info: string;
                 noMulti: string;
@@ -221,6 +248,7 @@ export default class Editor {
     files: typeof publicApi.files;
     get: typeof publicApi.get;
     hide: typeof publicApi.hide;
+    i18n: typeof publicApi.i18n;
     ids: typeof publicApi.ids;
     inError: typeof publicApi.inError;
     inline: typeof publicApi.inline;
@@ -260,7 +288,6 @@ export default class Editor {
         processing: HTMLElement;
         wrapper: HTMLElement;
     };
-    protected i18n: typeof Editor.defaults.i18n;
     protected _actionClass: typeof privateApi._actionClass;
     protected _ajax: typeof privateApi._ajax;
     protected _animate: typeof privateApi._animate;
@@ -272,6 +299,7 @@ export default class Editor {
     protected _crudArgs: typeof privateApi._crudArgs;
     protected _dataSource: typeof privateApi._dataSource;
     protected _displayReorder: typeof privateApi._displayReorder;
+    protected _drawTitle: typeof privateApi._drawTitle;
     protected _edit: typeof privateApi._edit;
     protected _event: typeof privateApi._event;
     protected _eventName: typeof privateApi._eventName;
@@ -326,6 +354,33 @@ export default class Editor {
         };
         error: {
             system: string;
+        };
+        field: {
+            autocomplete: {
+                noResults: string;
+                placeholder: string;
+            };
+            tags: {
+                addButton: string;
+                inputPlaceholder: string;
+                noResults: string;
+                placeholder: string;
+            };
+            upload: {
+                choose: string;
+                clear: string;
+                dragDrop: string;
+                noFile: string;
+                processing: string;
+                uploading: string;
+            };
+            uploadMany: {
+                choose: string;
+                dragDrop: string;
+                noFiles: string;
+                processing: string;
+                uploading: string;
+            };
         };
         multi: {
             info: string;

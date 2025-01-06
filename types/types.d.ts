@@ -110,25 +110,64 @@ declare module 'datatables.net' {
 		}
 	}
 
-	interface ButtonConfig {
-		/** Editor instance to trigger button */
-		editor: Editor;
+	interface Buttons {
+		create: EditorButtonCreate;
+		edit: EditorButtonEdit;
+		editSingle: EditorButtonEditSingle;
+		remove: EditorButtonRemove;
+		removeSingle: EditorButtonRemoveSingle;
 
-		/** The form control buttons to show in the Editor form when activated */
-		formButtons?: IButton | IButton[] | string;
-
-		/** The message to show in the edit form */
-		formMessage?: string;
-
-		/** Form options to configure the behaviour of the form */
-		formOptions?: IFormOptions;
-
-		/** The title to give the edit form */
-		formTitle?: string;
+		createInline: {
+			extend: 'createInline';
+			position?: null | 'start' | 'end' | HTMLElement;
+		}
 	}
 }
 
-interface ApiOptions {
+/** Create new row Button */
+export interface EditorButtonCreate extends EditorButtonConfig {
+	extend: 'create';
+}
+
+/** Edit one or more rows Button */
+export interface EditorButtonEdit extends EditorButtonConfig {
+	extend: 'edit';
+}
+
+/** Edit a single row Button (disabled when multiple selected) */
+export interface EditorButtonEditSingle extends EditorButtonConfig {
+	extend: 'editSingle';
+}
+
+/** Delete one or more rows Button */
+export interface EditorButtonRemove extends EditorButtonConfig {
+	extend: 'remove';
+}
+
+/** Delete a single row Button (disabled when multiple selected) */
+export interface EditorButtonRemoveSingle extends EditorButtonConfig {
+	extend: 'removeSingle';
+}
+
+/** Common properties used by the buttons provided by Editor */
+export interface EditorButtonConfig {
+	/** Editor instance to trigger button */
+	editor: Editor;
+
+	/** The form control buttons to show in the Editor form when activated */
+	formButtons?: IButton | IButton[] | string;
+
+	/** The message to show in the edit form */
+	formMessage?: string;
+
+	/** Form options to configure the behaviour of the form */
+	formOptions?: IFormOptions;
+
+	/** The title to give the edit form */
+	formTitle?: string;
+}
+
+export interface ApiOptions {
 	buttons?: 'string';
 	title?: 'string';
 	message?: 'string';

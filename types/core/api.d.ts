@@ -457,6 +457,17 @@ export declare function get(this: Editor, names?: string[]): {
  */
 export declare function hide(this: Editor, names?: any, animate?: any): Editor;
 /**
+ * Look up a translation string from Editor's i18n strings
+ *
+ * @param this Editor instance
+ * @param user User defined string from a configuration variable. This will be used
+ *   if it is not null / undefined.
+ * @param token Token name to get
+ * @param def Default string if no token
+ * @returns Looked up translation string
+ */
+export declare function i18n(this: Editor, user: string | null, token: string, def?: string): string;
+/**
  * Get the ids of the rows being edited
  *
  * @param includeHash Include a prefixed `#`, useful if to be used as a selector

@@ -1,11 +1,16 @@
 /// <reference types="jquery" />
 /// <reference types="datatables.net" />
+import { IOptions } from '../field/defaults';
 export interface IFieldType {
-    create: (conf: any) => JQuery | void;
-    disable?: (conf: any) => void;
-    enable?: (conf: any) => void;
-    get: (conf: any) => any;
-    set: (conf: any, val: any) => void;
+    canReturnSubmit?: (conf: IOptions) => boolean;
+    create: (conf: IOptions) => JQuery | void;
+    destroy?: (conf: IOptions) => void;
+    disable?: (conf: IOptions) => void;
+    enable?: (conf: IOptions) => void;
+    get: (conf: IOptions, fieldSpecific?: any) => any;
+    input?: (conf: IOptions) => any;
+    set: (conf: IOptions, val: any) => void;
+    update?: (conf: IOptions, options: any) => void;
 }
 declare const fieldType: IFieldType;
 export default fieldType;
