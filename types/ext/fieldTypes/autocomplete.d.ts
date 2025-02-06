@@ -5,6 +5,9 @@ import { IOptions } from '../../field/defaults';
 import { IFieldType } from '../../model/fieldType';
 export interface IAutoCompleteConf extends IOptions {
     ajax?: true | string;
+    ajaxData?: {
+        [key: string]: string | number | (() => string | number);
+    };
     attr?: {
         [key: string]: string | number;
     };

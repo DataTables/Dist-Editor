@@ -5,6 +5,9 @@ import { IOptions } from '../../field/defaults';
 import { IFieldType } from '../../model/fieldType';
 export interface ITagsConf extends IOptions {
     ajax?: true | null | string;
+    ajaxData?: {
+        [key: string]: string | number | (() => string | number);
+    };
     display?: (data: any, value: any) => string;
     escapeLabelHtml?: boolean;
     i18n?: {
