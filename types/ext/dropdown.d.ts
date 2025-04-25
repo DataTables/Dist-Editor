@@ -43,6 +43,7 @@ export default class DropDown {
     host(el: any): this;
     options(): any[];
     options(options: any[]): DropDown[];
+    owns(node: Node): boolean;
     show(below?: HTMLElement): DropDown;
     private _listView;
     private _position;

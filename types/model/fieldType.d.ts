@@ -11,6 +11,7 @@ export interface IFieldType {
     input?: (conf: IOptions) => any;
     set: (conf: IOptions, val: any) => void;
     update?: (conf: IOptions, options: any) => void;
+    owns?: (conf: IOptions, node: Node) => boolean;
 }
 declare const fieldType: IFieldType;
 export default fieldType;
