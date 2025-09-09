@@ -1,8 +1,17 @@
-/*! DataTables Editor v2.4.3
+/*! DataTables Editor v2.5.0
  *
  * © SpryMedia Ltd, all rights reserved.
  * License: editor.datatables.net/license
  */
+/**
+ * @summary     DataTables Editor
+ * @description Editing library for DataTables
+ * @version     2.5.0
+ * @file        dataTables.editor.js
+ * @author      SpryMedia Ltd
+ * @contact     datatables.net/contact
+ */
+import { IEditorOptions } from './model/defaults';
 import modelSettings from './model/settings';
 import classNames from './ext/classes';
 import * as publicApi from './core/api';
@@ -41,6 +50,7 @@ export default class Editor {
             error: string;
             input: string;
             inputControl: string;
+            inputError: string;
             label: string;
             'msg-error': string;
             'msg-info': string;
@@ -95,89 +105,7 @@ export default class Editor {
     static pairs: typeof staticApi.pairs;
     static factory: typeof staticApi.factory;
     static upload: typeof staticApi.upload;
-    static defaults: {
-        actionName: string;
-        ajax: any;
-        display: string;
-        events: {};
-        fields: any[];
-        formOptions: {
-            bubble: import("./model/formOptions").IFormOptions;
-            inline: import("./model/formOptions").IFormOptions;
-            main: import("./model/formOptions").IFormOptions;
-        };
-        i18n: {
-            close: string;
-            create: {
-                button: string;
-                submit: string;
-                title: string;
-            };
-            datetime: {
-                amPm: string[];
-                hours: string;
-                minutes: string;
-                months: string[];
-                next: string;
-                previous: string;
-                seconds: string;
-                unknown: string;
-                weekdays: string[];
-            };
-            edit: {
-                button: string;
-                submit: string;
-                title: string;
-            };
-            error: {
-                system: string;
-            };
-            field: {
-                autocomplete: {
-                    noResults: string;
-                    placeholder: string;
-                };
-                tags: {
-                    addButton: string;
-                    inputPlaceholder: string;
-                    noResults: string;
-                    placeholder: string;
-                };
-                upload: {
-                    choose: string;
-                    clear: string;
-                    dragDrop: string;
-                    noFile: string;
-                    processing: string;
-                    uploading: string;
-                };
-                uploadMany: {
-                    choose: string;
-                    dragDrop: string;
-                    noFiles: string;
-                    processing: string;
-                    uploading: string;
-                };
-            };
-            multi: {
-                info: string;
-                noMulti: string;
-                restore: string;
-                title: string;
-            };
-            remove: {
-                button: string;
-                confirm: {
-                    1: string;
-                    _: string;
-                };
-                submit: string;
-                title: string;
-            };
-        };
-        idSrc: string;
-        table: any;
-    };
+    static defaults: IEditorOptions;
     static models: {
         button: import("./model/button").IButton;
         displayController: import("./model/displayController").IDisplayController;
@@ -205,6 +133,7 @@ export default class Editor {
             individual(identifier: any, fieldNames: any): {};
             prep(action: any, identifier: any, submit: any, json: any, store: any): void;
             refresh(): void;
+            reload(ids: string[], data: any[]): void;
             remove(identifier: any, fields: any, store: any): void;
         };
         html: {
@@ -264,6 +193,7 @@ export default class Editor {
     one: typeof publicApi.one;
     open: typeof publicApi.open;
     order: typeof publicApi.order;
+    refresh: typeof publicApi.refresh;
     remove: typeof publicApi.remove;
     set: typeof publicApi.set;
     show: typeof publicApi.show;
@@ -273,7 +203,7 @@ export default class Editor {
     title: typeof publicApi.title;
     val: typeof publicApi.val;
     protected classes: typeof classNames;
-    protected c: typeof Editor.defaults;
+    protected c: Partial<IEditorOptions>;
     protected s: typeof modelSettings;
     protected dom: {
         body: HTMLElement;
@@ -301,6 +231,7 @@ export default class Editor {
     protected _displayReorder: typeof privateApi._displayReorder;
     protected _drawTitle: typeof privateApi._drawTitle;
     protected _edit: typeof privateApi._edit;
+    protected _editRefresh: typeof privateApi._editRefresh;
     protected _event: typeof privateApi._event;
     protected _eventName: typeof privateApi._eventName;
     protected _fieldFromNode: typeof privateApi._fieldFromNode;
@@ -318,13 +249,20 @@ export default class Editor {
     protected _preopen: typeof privateApi._preopen;
     protected _processing: typeof privateApi._processing;
     protected _noProcessing: typeof privateApi._noProcessing;
+    protected _remove: typeof privateApi._remove;
     protected _submit: typeof privateApi._submit;
     protected _submitTable: typeof privateApi._submitTable;
     protected _submitSuccess: typeof privateApi._submitSuccess;
     protected _submitError: typeof privateApi._submitError;
     protected _tidy: typeof privateApi._tidy;
     protected _weakInArray: typeof privateApi._weakInArray;
-    constructor(init: any, cjsJq?: any);
+    /**
+     * Create a new instance of DataTables Editor.
+     *
+     * @param init Editor configuration object
+     * @returns Editor instance
+     */
+    constructor(init: Partial<IEditorOptions>);
     static safeId: (id: string) => string;
     /** @internal */
     internalEvent(name: any, args: any): void;
@@ -337,15 +275,15 @@ export default class Editor {
             title: string;
         };
         datetime: {
-            amPm: string[];
+            amPm: [string, string];
             hours: string;
             minutes: string;
-            months: string[];
+            months: [string, string, string, string, string, string, string, string, string, string, string, string];
             next: string;
             previous: string;
             seconds: string;
             unknown: string;
-            weekdays: string[];
+            weekdays: [string, string, string, string, string, string, string];
         };
         edit: {
             button: string;
@@ -365,6 +303,7 @@ export default class Editor {
                 inputPlaceholder: string;
                 noResults: string;
                 placeholder: string;
+                removeIcon: string;
             };
             upload: {
                 choose: string;
@@ -391,7 +330,7 @@ export default class Editor {
         remove: {
             button: string;
             confirm: {
-                1: string;
+                [num: number]: string;
                 _: string;
             };
             submit: string;

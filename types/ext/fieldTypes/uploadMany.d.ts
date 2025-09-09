@@ -1,9 +1,14 @@
 /// <reference types="jquery" />
 /// <reference types="datatables.net" />
-import { IUploadConf } from "./shared";
-export interface IUploadManyConf extends IUploadConf {
+import { ISharedUploadConf } from './shared';
+export interface IUploadManyOptions extends ISharedUploadConf {
+    /** Create a upload field for multiple files */
+    type: 'uploadMany';
     limit?: number;
-    _container: JQuery<HTMLElement>;
+}
+/** Internal properties used on the configuration object for the field */
+export interface IUploadManyConf extends IUploadManyOptions {
+    _container?: JQuery<HTMLElement>;
 }
 export declare const uploadMany: import("../../model/fieldType").IFieldType & {
     canReturnSubmit(conf: any, node: any): true;

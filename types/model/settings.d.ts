@@ -22,7 +22,7 @@ export interface ISettings {
      * The current form action - 'create', 'edit' or 'remove'. If no current action then
      * it is set to null.
      */
-    action: null | 'create' | 'edit' | 'remove';
+    action: null | 'create' | 'read' | 'edit' | 'remove';
     /** Name of the parameter used to indicate what action Editor is performing */
     actionName: string;
     ajax: string | IAjaxOptions | Function;

@@ -24,6 +24,8 @@ export interface IFormOptions {
     onFieldError: 'focus' | 'none' | ((editor: Editor) => void);
     /** Action to take on return key when the form is focused */
     onReturn: 'submit' | 'none' | ((editor: Editor, e: JQuery.TriggeredEvent) => void);
+    /** Reload the data for the target rows */
+    refresh: boolean;
     /** What data should be loaded into the form */
     scope: 'row' | 'cell';
     /** What values should be submitted to the server */

@@ -89,6 +89,10 @@ declare const _default: {
          */
         inputControl: string;
         /**
+         * Error class for the `input` element (whatever it might be)
+         */
+        inputError: string;
+        /**
          * Field label
          */
         label: string;

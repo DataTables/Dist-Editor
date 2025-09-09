@@ -94,7 +94,7 @@ export interface IDefaults {
     submit: boolean;
     /**
      * The input control that is presented to the end user. The options available
-     * are defined by {@link Editor.fieldTypes} and any extensions made
+     * are defined by `Editor.fieldTypes` and any extensions made
      * to that object.
      */
     type: string;

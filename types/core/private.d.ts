@@ -7,6 +7,7 @@ export interface IReplacements {
 export interface IEditorAjax extends IAjaxOptions {
     deleteBody?: boolean;
     replacements?: IReplacements;
+    submitAs?: 'json' | 'http';
 }
 /**
  * Set the class on the form to relate to the action that is being performed.
@@ -23,10 +24,9 @@ export declare function _actionClass(this: Editor): void;
  * @param  {object} data Data to submit
  * @param  {function} success Success callback
  * @param  {function} error Error callback
- * @param  {object} submitParams Submitted data
  * @private
  */
-export declare function _ajax(this: Editor, data: any, success: any, error: any, submitParams: any): void;
+export declare function _ajax(this: Editor, data: any, success: any, error: any): void;
 /**
  * Abstraction for jQuery's animate method, to support jQuery slim which doesn't
  * include the animate module
@@ -120,6 +120,10 @@ export declare function _drawTitle(): void;
  * @private
  */
 export declare function _edit(this: Editor, items: any, editFields: any, type: any, formOptions: any, setupDone: any): void;
+/**
+ * Triggering editing, checking to see if a refresh of the data is needed or not
+ */
+export declare function _editRefresh(this: Editor, items: any, dataSource: Function, type: string, formOptions: any, setupDone: any): void;
 /**
  * Fire callback functions and trigger events.
  *
@@ -263,6 +267,14 @@ export declare function _processing(this: Editor, processing: any): void;
  */
 export declare function _noProcessing(this: Editor, args: any): boolean;
 /**
+ *
+ * @param this Editor instance
+ * @param items Items to be removed
+ * @param argOpts Options from editing API arguments
+ * @param editFields Edit fields object
+ */
+export declare function _remove(this: Editor, items: any, argOpts: any, editFields: any): void;
+/**
  * Submit a form to the server for processing. This is the private method that is used
  * by the 'submit' API method, which should always be called in preference to calling
  * this method directly.
@@ -291,7 +303,7 @@ export declare function _submit(this: Editor, successCallback: any, errorCallbac
  * @param  {object} submitParams Submitted data
  * @private
  */
-export declare function _submitTable(this: Editor, data: any, success: any, error: any, submitParams: any): void;
+export declare function _submitTable(this: Editor, data: any, success: any, error: any): void;
 /**
  * Submit success callback function
  *

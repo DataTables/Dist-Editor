@@ -1,9 +1,10 @@
+/// <reference types="jquery" />
+import { Api } from 'datatables.net';
+import { FieldConf } from '../ext/fieldTypes';
 import { IFormOptions } from '../model/formOptions';
-declare const _default: {
+export interface IEditorOptions {
     /**
      * Parameter name to use to submit data to the server.
-     *
-     * @type string
      */
     actionName: string;
     /**
@@ -31,44 +32,39 @@ declare const _default: {
      * example, you could use a different data store such as localStorage,
      * Firebase or route the data through a web-socket.
      */
-    ajax: any;
+    ajax: string | any;
     /**
      * The display controller for the form. The form itself is just a collection of
      * DOM elements which require a display container. This display controller allows
      * the visual appearance of the form to be significantly altered without major
      * alterations to the Editor code. There are two display controllers built into
      * Editor *lightbox* and *envelope*. The value of this property will
-     * be used to access the display controller defined in {@link Editor.display}
-     * for the given name. Additional display controllers can be added by adding objects
-     * to that object, through extending the displayController model:
-     * {@link Editor.models.displayController}.
-     *
-     * @type string
-     * @default lightbox
+     * be used to access the display controller defined in `Editor.display`
+     * for the given name.
      */
     display: string;
+    /** @deprecated Use `table` */
+    domTable: string;
     /**
      * Events / callbacks - event handlers can be assigned as an individual function
      * during initialisation using the parameters in this name space. The names, and
      * the parameters passed to each callback match their event equivalent in the
-     * {@link Editor} object.
+     * Editor object.
      *
-     * @namespace
      * @deprecated Since 1.3. Use the `on()` API method instead. Note that events
      * passed in do still operate as they did in 1.2- but are no longer
      * individually documented.
      */
-    events: {};
+    events: {
+        [name: string]: Function;
+    };
     /**
-     * Fields to initialise the form with - see {@link Editor.models.field} for
-     * a full list of the options available to each field. Note that if fields are not
-     * added to the form at initialisation time using this option, they can be added using
-     * the {@link Editor#add} API method.
-     *
-     * @type array
-     * @default []
+     * Fields to initialise the form with.
      */
-    fields: any[];
+    fields: FieldConf[];
+    /**
+     * Form configuration options
+     */
     formOptions: {
         bubble: IFormOptions;
         inline: IFormOptions;
@@ -81,101 +77,84 @@ declare const _default: {
      * You may also wish to refer to the <a href="http://datatables.net/usage/i18n">
      * DataTables internationalisation options</a> to provide a fully language
      * customised table interface.
-     *
-     * @namespace
      */
     i18n: {
         /**
          * Close button title text
-         *
-         * @type string
-         * @default Close
          */
         close: string;
         /**
          * Strings used when working with the Editor 'create' action (creating new
          * records).
-         *
-         * @namespace
          */
         create: {
             /**
              * Buttons button text
-             *
-             * @type string
-             * @default New
              */
             button: string;
             /**
              * Submit button text
-             *
-             * @type string
-             * @default Create
              */
             submit: string;
             /**
              * Display container title (when showing the editor display)
-             *
-             * @type string
-             * @default Create new entry
              */
             title: string;
         };
         datetime: {
-            amPm: string[];
+            amPm: [string, string];
             hours: string;
             minutes: string;
-            months: string[];
+            months: [
+                string,
+                string,
+                string,
+                string,
+                string,
+                string,
+                string,
+                string,
+                string,
+                string,
+                string,
+                string
+            ];
             next: string;
             previous: string;
             seconds: string;
             unknown: string;
-            weekdays: string[];
+            weekdays: [string, string, string, string, string, string, string];
         };
         /**
          * Strings used when working with the Editor 'edit' action (editing existing
          * records).
-         *
-         * @namespace
          */
         edit: {
             /**
              * Buttons button text
-             *
-             * @type string
-             * @default Edit
              */
             button: string;
             /**
              * Submit button text
-             *
-             * @type string
-             * @default Update
              */
             submit: string;
             /**
              * Display container title (when showing the editor display)
-             *
-             * @type string
-             * @default Edit entry
              */
             title: string;
         };
         /**
          * Strings used for error conditions.
-         *
-         * @namespace
          */
         error: {
             /**
              * Generic server error message
-             *
-             * @type string
-             * @default
-             * A system error has occurred (<a target=\"_blank\" href=\"//datatables.net/tn/12\">More information</a>)
              */
             system: string;
         };
+        /**
+         * Strings used by the various field types
+         */
         field: {
             autocomplete: {
                 noResults: string;
@@ -186,6 +165,7 @@ declare const _default: {
                 inputPlaceholder: string;
                 noResults: string;
                 placeholder: string;
+                removeIcon: string;
             };
             upload: {
                 choose: string;
@@ -205,8 +185,6 @@ declare const _default: {
         };
         /**
          * Strings used for multi-value editing
-         *
-         * @namespace
          */
         multi: {
             /**
@@ -231,15 +209,10 @@ declare const _default: {
         /**
          * Strings used when working with the Editor 'delete' action (deleting
          * existing records).
-         *
-         * @namespace
          */
         remove: {
             /**
              * Buttons button text
-             *
-             * @type string
-             * @default Delete
              */
             button: string;
             /**
@@ -254,26 +227,17 @@ declare const _default: {
              * to consider the different pluralisation characteristics of different
              * languages.
              *
-             * @type object|string
-             * @default Are you sure you wish to delete %d rows?
-             *
              */
             confirm: {
-                1: string;
                 _: string;
+                [num: number]: string;
             };
             /**
              * Submit button text
-             *
-             * @type string
-             * @default Delete
              */
             submit: string;
             /**
              * Display container title (when showing the editor display)
-             *
-             * @type string
-             * @default Delete
              */
             title: string;
         };
@@ -281,17 +245,7 @@ declare const _default: {
     /**
      * JSON property from which to read / write the row's ID property (i.e. its
      * unique column index that identifies the row to the database). By default
-     * Editor will use the `DT_RowId` property from the data source object
-     * (DataTable's magic property to set the DOM id for the row).
-     *
-     * If you want to read a parameter from the data source object instead of
-     * using `DT_RowId`, set this option to the property name to use.
-     *
-     * Like other data source options the `srcId` option can be given in dotted
-     * object notation to read nested objects.
-     *
-     * @type null|string
-     * @default DT_RowId
+     * Editor will use the `DT_RowId` property from the data source object.
      */
     idSrc: string;
     /**
@@ -302,10 +256,14 @@ declare const _default: {
      * called `table`. The name has been altered in 1.3+ to simplify the
      * initialisation. This is a backwards compatible change - if you pass in
      * a `table` option it will be used.
-     *
-     * @type string
-     * @default <i>Empty string</i>
      */
-    table: any;
-};
+    table: string | HTMLElement | JQuery | Api;
+    /**
+     * A jQuery selector or reference to the element that should be used as the form
+     * template. Only a single element should be selected, so it is most common to
+     * use an ID selector here.
+     */
+    template: string | HTMLElement | JQuery;
+}
+declare const _default: IEditorOptions;
 export default _default;

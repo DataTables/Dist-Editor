@@ -12,6 +12,7 @@ interface IOptions {
         placeholder?: string;
     };
     options: any[];
+    order: 'asc' | 'desc' | false;
     renderer: TRender;
     search: boolean | null;
     select: (val: string) => void;
@@ -42,8 +43,9 @@ export default class DropDown {
     hide(): DropDown;
     host(el: any): this;
     options(): any[];
-    options(options: any[]): DropDown[];
+    options(options: any[], append?: boolean): DropDown[];
     owns(node: Node): boolean;
+    processing(state: boolean): this;
     show(below?: HTMLElement): DropDown;
     private _listView;
     private _position;

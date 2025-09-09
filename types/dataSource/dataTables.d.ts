@@ -17,6 +17,7 @@ declare const dataSource: {
     individual(identifier: any, fieldNames: any): {};
     prep(action: any, identifier: any, submit: any, json: any, store: any): void;
     refresh(): void;
+    reload(ids: string[], data: any[]): void;
     remove(identifier: any, fields: any, store: any): void;
 };
 export default dataSource;

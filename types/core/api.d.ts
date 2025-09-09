@@ -4,6 +4,7 @@ import Field from '../field/Field';
 import { IDisplay, IMode, ISettings, IBubbleLocation } from '../model/settings';
 import { IFormOptions } from '../model/formOptions';
 import type { Api } from 'datatables.net';
+import { FieldConf } from '../ext/fieldTypes/index';
 export declare type RowIdx = number;
 export declare type RowSelector<T = any> = RowIdx | string | Node | JQuery | ((idx: RowIdx, data: T, node: Node | HTMLElement | null) => boolean) | RowSelector<T>[];
 export declare type CellIdx = {
@@ -101,7 +102,7 @@ interface DependentCallback {
  * @param reorder INTERNAL for array adding performance only
  * @returns Editor instance
  */
-export declare function add(this: Editor, cfg: any, after?: string, reorder?: boolean): Editor;
+export declare function add(this: Editor, cfg: FieldConf | FieldConf[], after?: string, reorder?: boolean): Editor;
 /**
  * Get the Ajax configuration for the Editor instance
  *
@@ -509,7 +510,7 @@ export declare function inline(this: Editor, cell: string | Node | HTMLElement |
  * @param opts Form options
  * @returns Editor instance
  */
-export declare function inlineCreate(this: Editor, insertPoint: null | 'start' | 'end' | HTMLElement, opts: IFormOptions): Editor;
+export declare function inlineCreate(this: Editor, insertPoint: null | 'start' | 'end' | HTMLElement | string | JQuery | number, opts: IFormOptions): Editor;
 /**
  * Clear a global information message
  *
@@ -654,6 +655,14 @@ export declare function order(this: Editor, setIn: string[]): Editor;
  */
 export declare function order(this: Editor, ...setIn: string[]): Editor;
 /**
+ * Reload data in the target data source
+ *
+ * @param this Editor instance
+ * @param ids Row ids to reload data for
+ * @param cb Callback when done
+ */
+export declare function refresh(this: Editor, ids: string[], cb: Function): void;
+/**
  * Delete rows from a table
  *
  * @param this Editor instance
@@ -738,7 +747,7 @@ export declare function table(this: Editor): ISettings['table'];
  * @param setIn DataTable to set
  * @returns Editor instance
  */
-export declare function table(this: Editor, setIn: ISettings['table']): Editor;
+export declare function table(this: Editor, setIn: ISettings['table'] | Api): Editor;
 /**
  * Get the template element to use for the main form
  *
