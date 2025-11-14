@@ -1,4 +1,4 @@
-/*! DataTables Editor v2.5.0
+/*! DataTables Editor v2.5.1
  *
  * © SpryMedia Ltd, all rights reserved.
  * License: editor.datatables.net/license
@@ -6,19 +6,19 @@
 /**
  * @summary     DataTables Editor
  * @description Editing library for DataTables
- * @version     2.5.0
+ * @version     2.5.1
  * @file        dataTables.editor.js
  * @author      SpryMedia Ltd
  * @contact     datatables.net/contact
  */
-import { IEditorOptions } from './model/defaults';
-import modelSettings from './model/settings';
-import classNames from './ext/classes';
 import * as publicApi from './core/api';
 import * as staticApi from './core/api-static';
 import * as privateApi from './core/private';
+import classNames from './ext/classes';
 import Field from './field/Field';
+import { IEditorOptions } from './model/defaults';
 import { IFieldType } from './model/fieldType';
+import modelSettings from './model/settings';
 import './core/api-dt';
 import './ext/buttons';
 export default class Editor {
