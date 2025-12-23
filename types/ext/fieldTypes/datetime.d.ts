@@ -45,5 +45,6 @@ declare const _default: import("../../model/fieldType").IFieldType & {
     minDate(conf: IDatetimeConf, min: any): void;
     owns(conf: IDatetimeConf, node: any): any;
     set(conf: IDatetimeConf, val: any): void;
+    inst(conf: IDatetimeConf): any;
 };
 export default _default;

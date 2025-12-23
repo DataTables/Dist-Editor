@@ -1,4 +1,4 @@
-/*! DataTables Editor v2.5.1
+/*! DataTables Editor v2.5.2
  *
  * © SpryMedia Ltd, all rights reserved.
  * License: editor.datatables.net/license
@@ -6,7 +6,7 @@
 /**
  * @summary     DataTables Editor
  * @description Editing library for DataTables
- * @version     2.5.1
+ * @version     2.5.2
  * @file        dataTables.editor.js
  * @author      SpryMedia Ltd
  * @contact     datatables.net/contact

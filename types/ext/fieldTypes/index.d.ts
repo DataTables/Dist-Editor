@@ -69,6 +69,7 @@ declare const _default: {
         minDate(conf: import("./datetime").IDatetimeConf, min: any): void;
         owns(conf: import("./datetime").IDatetimeConf, node: any): any;
         set(conf: import("./datetime").IDatetimeConf, val: any): void;
+        inst(conf: import("./datetime").IDatetimeConf): any;
     };
     hidden: {
         create(conf: import("./hidden").IHiddenConf): any;
